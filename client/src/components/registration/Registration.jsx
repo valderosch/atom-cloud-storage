@@ -1,0 +1,24 @@
+import React, {useState} from 'react';
+import './Registration.less';
+import './neRegistration.css'
+import Input from "../input/Input";
+
+const Registration = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    return (
+        <div className="register_block">
+            <h3 className="reg_label">
+                Registration
+            </h3>
+            <Input value={name} setValue={setName} type="text" placeholder="Name"/>
+            <Input value={email} setValue={setEmail} type="text" placeholder="Email"/>
+            <Input value={password} setValue={setPassword} type="text" placeholder="Password"/>
+            <Input value={password} setValue={setPassword} type="text" placeholder="Confirm password"/>
+            <button className="register_button">Register</button>
+        </div>
+    );
+};
+
+export default Registration;
