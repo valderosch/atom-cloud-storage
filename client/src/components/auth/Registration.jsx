@@ -9,8 +9,8 @@ const Registration = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     return (
-        <div className="register_block">
-            <h3 className="reg_label">
+        <div className="auth_block">
+            <h3 className="auth_label">
                 Registration
             </h3>
             <Input value={name} setValue={setName} type="text" placeholder="Name"/>

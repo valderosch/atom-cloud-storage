@@ -3,8 +3,13 @@ import './Navbar.less';
 import Logo from '../../assets/img/logo.png'
 import './NeNavbar.css'
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logOut} from "../../reducers/userReducer";
 
 const Navbar = () => {
+    const isUserAuthorised = useSelector(state => state.user.isAuthorised);
+    const dispatch = useDispatch();
+
     return (
         <div className="navbar">
             <div className="container">
@@ -13,12 +18,19 @@ const Navbar = () => {
                     <h3 className="logo_title">Atom Cloud</h3>
                 </div>
                 <div className="auth">
-                    <p className="navbar_login">
-                        <NavLink to="/login">Login</NavLink>
-                    </p>
-                    <p className="navbar_register">
-                        <NavLink to="/registration">Registration</NavLink>
-                    </p>
+                    {!isUserAuthorised &&
+                        <p className="navbar_login">
+                            <NavLink to="/login">Login</NavLink>
+                        </p>
+                    }
+                    {!isUserAuthorised &&
+                        <p className="navbar_register">
+                            <NavLink to="/registration">Registration</NavLink>
+                        </p>
+                    }
+                    {isUserAuthorised &&
+                        <p className="navbar_login" onClick={() => dispatch(logOut())}>LogOut</p>
+                    }
                 </div>
             </div>
         </div>
