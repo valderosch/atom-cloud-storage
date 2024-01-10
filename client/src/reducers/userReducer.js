@@ -1,5 +1,5 @@
-const SET_USER = "";
-const LOGOUT = "";
+const SET_USER = "SET_USER";
+const LOGOUT = "LOGOUT";
 
 const defaultState = {
     currentUser: {},
@@ -31,5 +31,5 @@ export const setUser = user => ({
 })
 
 export const logOut = () => ({
-    type: LOGOUT,
+    type: LOGOUT
 })
