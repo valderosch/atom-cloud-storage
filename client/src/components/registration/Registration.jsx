@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './Registration.less';
 import './neRegistration.css'
 import Input from "../input/Input";
+import {registration} from "../../actions/user";
 
 const Registration = () => {
     const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Registration = () => {
             <Input value={email} setValue={setEmail} type="text" placeholder="Email"/>
             <Input value={password} setValue={setPassword} type="text" placeholder="Password"/>
             <Input value={password} setValue={setPassword} type="text" placeholder="Confirm password"/>
-            <button className="register_button">Register</button>
+            <button className="register_button" onClick={() => registration(email, password)}>Register</button>
         </div>
     );
 };
