@@ -4,11 +4,18 @@ import './neApp.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Registration from "./auth/Registration";
 import Login from "./auth/Login";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {authentication} from "../actions/user";
 
 
 function App() {
     const isUserAuthorised = useSelector(state => state.user.isAuthorised);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(authentication())
+    }, [dispatch])
 
   return (
       <BrowserRouter>

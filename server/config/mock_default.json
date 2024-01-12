@@ -1,0 +1,6 @@
+{
+  "info": "This file must be named as default.json. Here you can specify settings. ---You can delete this row---",
+  "serverPort": "YourServerPort: 1111, 2222, 3333 etc.",
+  "dbUrl" : "mongodb connection string + db_user name and password",
+  "secretKey": "your_hash_secret_key"
+}
