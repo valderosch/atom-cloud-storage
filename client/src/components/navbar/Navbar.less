@@ -1,30 +1,68 @@
 @import "../../utils/colors";
 
 .navbar {
+  padding-top: 0.25rem;
+  display: flex;
   height: 50px;
   width: 100%;
   background-color: @white;
   justify-content: center;
-
-  &_logo{
-    width: 30%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  align-items: center;
+  border-top: 3px solid #e58f8f;
+  box-shadow: 1px 1px 10px #e5e5e5;
 }
 
 .container {
-  width: 60%;
+  width: 80%;
   height: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: aqua;
+}
+
+.navbar_logo{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo{
   width: 40px;
   height: 40px;
+}
+.logo_title{
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: 'Lato', sans-serif;
+}
+
+.auth{
+  display: flex;
+  width: 15%;
+  height: 90%;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar_login, .navbar_register {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  text-decoration: unset;
+  color: #e58f8f;
+}
+
+.auth_btn{
+  text-decoration: none;
+  color: #bbbbbb;
+}
+
+.auth_btn:hover{
+  color: #e58f8f;
+  font-weight: 600;
 }

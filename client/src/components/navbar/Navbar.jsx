@@ -20,12 +20,12 @@ const Navbar = () => {
                 <div className="auth">
                     {!isUserAuthorised &&
                         <p className="navbar_login">
-                            <NavLink to="/login">Login</NavLink>
+                            <NavLink to="/login" className="auth_btn">Login</NavLink>
                         </p>
                     }
                     {!isUserAuthorised &&
                         <p className="navbar_register">
-                            <NavLink to="/registration">Registration</NavLink>
+                            <NavLink to="/registration" className="auth_btn">Registration</NavLink>
                         </p>
                     }
                     {isUserAuthorised &&
