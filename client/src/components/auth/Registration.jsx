@@ -15,8 +15,8 @@ const Registration = () => {
             </h3>
             <Input value={name} setValue={setName} type="text" placeholder="Name"/>
             <Input value={email} setValue={setEmail} type="text" placeholder="Email"/>
-            <Input value={password} setValue={setPassword} type="text" placeholder="Password"/>
-            <Input value={password} setValue={setPassword} type="text" placeholder="Confirm password"/>
+            <Input value={password} setValue={setPassword} type="password" placeholder="Password"/>
+            <Input value={password} setValue={setPassword} type="password" placeholder="Confirm password"/>
             <button className="register_button" onClick={() => registration(email, password)}>Register</button>
         </div>
     );

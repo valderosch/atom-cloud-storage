@@ -15,7 +15,7 @@ const Login = () => {
                 Authorisation
             </h3>
             <Input value={email} setValue={setEmail} type="text" placeholder="Email"/>
-            <Input value={password} setValue={setPassword} type="text" placeholder="Password"/>
+            <Input value={password} setValue={setPassword} type="password" placeholder="Password"/>
             <button className="login_button" onClick={()=> dispatch(authorisation(email, password))}>Login</button>
         </div>
     );
