@@ -1,10 +1,15 @@
 const {Schema, model, ObjectId} = require("mongoose")
 
-const File = new File({
+const File = new Schema({
     filename : {type: String, required: true, unique: true},
     filetype : {type: String, required: true},
-    weight: {type: Number, default: 0},
-    isFav : {type : Boolean, default: false}
+    accessLink : {type: String},
+    size: {type: Number, default: 0},
+    filepath : {type: String, default: ''},
+    isFav : {type : Boolean, default: false},
+    user : {type: ObjectId, ref: 'User'},
+    parent : {type: ObjectId, ref: 'File'},
+    childs : [{type: ObjectId, ref: 'File'}],
 })
 
 module.exports = model('File', File);
