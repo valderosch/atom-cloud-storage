@@ -11,7 +11,7 @@ const PORT = config.get('serverPort');
 app.use(corsMiddleWare);
 app.use(express.json());
 app.use('/api/auth', authRouter);
-app.use('api/files', fileRouter);
+app.use('/api/files', fileRouter);
 
 const start = async () => {
     try{
