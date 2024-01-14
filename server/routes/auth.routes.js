@@ -5,6 +5,9 @@ const {check, validationResult} = require("express-validator");
 const crypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleWare = require("../middleware/auth.middleware");
+const fileService = require("../services/fileService");
+const File = require("../models/File");
+
 
 const router = new Router();
 router.post('/registration',
@@ -32,6 +35,10 @@ router.post('/registration',
         const hashedPassword = await crypt.hash(password, 5);
         const user = new User({email, password: hashedPassword});
         await user.save();
+        await fileService.createNewDir(new File({
+            user: user.id,
+            name: ``
+        }))
         return res.json({
             message: "New user was created!"
         })
@@ -101,6 +108,5 @@ router.get('/auth', authMiddleWare,
             })
         }
     })
-
 
 module.exports = router

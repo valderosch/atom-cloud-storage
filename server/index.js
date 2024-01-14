@@ -1,15 +1,17 @@
-const express = require("express")
+const express = require("express");
 const mongoose = require('mongoose');
-const  config = require("config")
-const authRouter = require("./routes/auth.routes")
-const corsMiddleWare = require('./middleware/cors.middleware')
+const  config = require("config");
+const authRouter = require("./routes/auth.routes");
+const fileRouter = require("./routes/file.routes");
+const corsMiddleWare = require('./middleware/cors.middleware');
 
-const app = express()
-const PORT = config.get('serverPort')
+const app = express();
+const PORT = config.get('serverPort');
 
-app.use(corsMiddleWare)
-app.use(express.json())
-app.use('/api/auth', authRouter)
+app.use(corsMiddleWare);
+app.use(express.json());
+app.use('/api/auth', authRouter);
+app.use('api/files', fileRouter);
 
 const start = async () => {
     try{
