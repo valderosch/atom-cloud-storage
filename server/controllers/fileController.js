@@ -26,7 +26,7 @@ class FileController {
 
     async fetchFile (request, response) {
         try {
-            const files = await File.findOne({user: request.user.id, parent: request.query.parent})
+            const files = await File.find({user: request.user.id, parent: request.query.parent})
             return response.json(files);
         } catch (e) {
             console.log(e);

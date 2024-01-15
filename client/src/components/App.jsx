@@ -7,6 +7,8 @@ import Login from "./auth/Login";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {authentication} from "../actions/user";
+import Disk from "./disk/Disk";
+import {Navigate} from "react-router";
 
 
 function App() {
@@ -22,10 +24,16 @@ function App() {
           <div className="app">
               <Navbar/>
               <div className="wrap">
-                  {!isUserAuthorised &&
+                  {!isUserAuthorised ?
                       <Routes>
                           <Route path="/registration" element={<Registration/>}/>
                           <Route path="/login" element={<Login/>}/>
+                          <Route path="*" element={<Navigate to="/login" />} />
+                      </Routes>
+                      :
+                      <Routes>
+                          <Route exact path="/" element={<Disk/>}/>
+                          <Route path="*" element={<Navigate to="/" />} />
                       </Routes>
                   }
               </div>
