@@ -5,14 +5,14 @@ const User = require('../models/User');
 class FileController {
     async createDirectory (request, response){
         try {
-            const {name, type, parent} = request.body;
-            const file = new File({name, type, parent, user: request.user.id});
+            const {filename, filetype, parent} = request.body;
+            const file = new File({filename, filetype, parent, user: request.user.id});
             const parentFile = await File.findOne({_id: parent});
             if(!parentFile) {
-                file.filepath = name;
+                file.filepath = filename;
                 await fileService.createNewDir(file);
             } else {
-                file.filepath = `${parentFile.filepath}\\${file.name}`
+                file.filepath = `${parentFile.filepath}\\${file.filename}`
                 parentFile.childs.push(file._id);
                 await parentFile.save();
             }
