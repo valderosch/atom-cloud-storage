@@ -23,7 +23,6 @@ const Disk = () => {
                     -=-
                 </div>
             </div><br/>
-          DISk
             <FilesList/>
         </div>
     );

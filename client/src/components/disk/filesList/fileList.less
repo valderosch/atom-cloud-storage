@@ -1,0 +1,41 @@
+
+.filelist {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  background-color: beige;
+
+  &__header {
+    display: grid;
+    width: 100%;
+    height: 2rem;
+    grid-template-columns: 1fr 4fr 1fr 2fr 1fr;
+  }
+
+  &__title{
+    grid-column-start: 2;
+    background-color: #e58f8f;
+    align-self: center;
+  }
+  &__type {
+    grid-column-start: 6;
+    align-self: center;
+  }
+  &__size {
+    grid-column-start: 7;
+    background-color: #e58f8f;
+    align-self: center;
+  }
+  &__date {
+    grid-column-start: 8;
+    background-color: #b9ddf6;
+    align-self: center;
+  }
+  &__fav {
+    grid-column-start: 9;
+    align-self: center;
+  }
+
+  &__board {
+    overflow: scroll;
+  }
+}
