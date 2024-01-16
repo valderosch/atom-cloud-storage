@@ -1,23 +1,31 @@
 .disk {
   margin-top: 1rem;
-  width: 80%;
+  width: 95%;
   height: 80%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-self: center;
+  justify-content: space-between;
+
+  &__explorer{
+    width: 18%;
+    max-height: 100%;
+  }
+  &__files {
+    width: 80%;
+    height: 100%;
+  }
 }
 
 .controls {
   width: 100%;
   height: 15%;
-  background-color: #bbbbbb;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   &__btns {
     width: 30%;
-    background-color: aquamarine;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,3 +39,16 @@
     justify-content: center;
   }
 }
+
+.button__back {
+  width: 5rem;
+  height: 2rem;
+  border: 2px solid #e58f8f;
+  border-radius: 5rem;
+  background-color: transparent;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #e58f8f;
+}
+
