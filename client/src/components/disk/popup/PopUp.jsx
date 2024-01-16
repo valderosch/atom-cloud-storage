@@ -19,8 +19,10 @@ const PopUp = () => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
-                    <button className="popup__cancel">Cancel</button>
-                    <button className="popup__confirm">Create</button>
+                    <div className="popup__controls">
+                        <button className="popup__confirm">Create</button>
+                        <button className="popup__cancel">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
