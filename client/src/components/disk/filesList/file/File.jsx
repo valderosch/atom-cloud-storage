@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './file.css';
 import fileImg from '../../../../assets/img/file.png';
 import folderImg from '../../../../assets/img/folder.png';
+//import Heart from 'react-animated-heart';
 
 const File = ({file}) => {
+    const [isFav, setIsFav] = useState(file.isFav);
+
+    const handleFavClick = () => {
+        setIsFav(!isFav);
+        // changeFavStatus();
+        console.log(`FAUVORITE: ${isFav}`);
+    };
+
     return (
         <div className="file">
             <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
@@ -11,6 +20,15 @@ const File = ({file}) => {
             <div className="file__type">{file.filetype}</div>
             <div className="file__size">{file.size}</div>
             <div className="file__date">{file.date}</div>
+            <div
+                className={`file__isfav ${isFav ? 'filled' : ''}`}
+                onClick={handleFavClick}
+                role="button"
+                tabIndex={0}
+            >
+                {isFav ? '❤️' : '🤍'}️
+            </div>
+            {/*<Heart classname="file__isfav" isClick={isFav} onClick={setIsFav}/>*/}
         </div>
     );
 };
