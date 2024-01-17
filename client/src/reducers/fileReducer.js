@@ -1,10 +1,12 @@
 const SET_FILES = "SET_FILES";
 const SET_CURR_DIR = "SET_CURR_DIR";
 const ADD_FILE = "ADD_FILE";
+const SET_POPUP_DISPLAY = "SET_POPUP_DISPLAY";
 
 const defaultState = {
     files: [],
-    currentDirectory: null
+    currentDirectory: null,
+    popupDisplay: 'none'
 }
 export default function fileReducer(state = defaultState,  action){
     switch (action.type){
@@ -14,6 +16,8 @@ export default function fileReducer(state = defaultState,  action){
             return {...state, currentDirectory: action.payload}
         case ADD_FILE:
             return {...state, files: [...state.files, action.payload]}
+        case SET_POPUP_DISPLAY:
+            return {...state, popupDisplay: action.payload}
         default:
             return state;
     }
@@ -32,4 +36,9 @@ export const setDirectory = (dir) => ({
 export const addFile = (file) => ({
     type: ADD_FILE,
     payload: file
+})
+
+export const setPopupDisplay = (display) => ({
+    type: SET_POPUP_DISPLAY,
+    payload: display
 })

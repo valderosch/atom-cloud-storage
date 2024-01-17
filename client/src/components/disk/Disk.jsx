@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {createNewDirectory, getFiles} from "../../actions/file";
+import {getFiles} from "../../actions/file";
 import FilesList from "./filesList/FilesList";
 import './disk.css';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
+import {setPopupDisplay} from "../../reducers/fileReducer";
 
 const Disk = () => {
     const dispatch = useDispatch();
@@ -14,8 +15,8 @@ const Disk = () => {
         dispatch(getFiles(currentDirectory));
     }, [currentDirectory, dispatch])
 
-    function createDirHandler() {
-        dispatch(createNewDirectory(currentDirectory, 'papka'))
+    function popupHandler() {
+        dispatch(setPopupDisplay('flex'));
         return undefined;
     }
 
@@ -28,7 +29,7 @@ const Disk = () => {
                 <div className="controls">
                     <div className="controls__btns">
                         <button className="button__back">Back</button>
-                        <button className="button__newdir" onClick={() => createDirHandler()}>newdir</button>
+                        <button className="button__newdir" onClick={() => popupHandler()}>newdir</button>
                     </div>
                     <input type="text" className="searchbar" defaultValue="Search..."></input>
                     <div className="controls__filter">
