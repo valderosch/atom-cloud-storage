@@ -14,7 +14,7 @@ const FilesList = () => {
                 <div className="filelist__type">Type</div>
                 <div className="filelist__size">Size</div>
                 <div className="filelist__date">Date</div>
-                <div className="filelist__fav">Fav</div>
+                <div className="filelist__fav">Favourite</div>
             </div>
             <div className="filelist__board">
                 {data}

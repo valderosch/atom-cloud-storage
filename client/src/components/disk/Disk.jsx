@@ -5,11 +5,12 @@ import FilesList from "./filesList/FilesList";
 import './disk.css';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
-import {setPopupDisplay} from "../../reducers/fileReducer";
+import {setDirectory, setPopupDisplay} from "../../reducers/fileReducer";
 
 const Disk = () => {
     const dispatch = useDispatch();
-    const currentDirectory = useSelector(state => state.files.currentDirectory)
+    const currentDirectory = useSelector(state => state.files.currentDirectory);
+    const directoryStack = useSelector(state => state.files.directoryStack);
 
     useEffect(() => {
         dispatch(getFiles(currentDirectory));
@@ -20,6 +21,11 @@ const Disk = () => {
         return undefined;
     }
 
+    function returnHandler() {
+        const prevDirId = directoryStack.pop();
+        dispatch(setDirectory(prevDirId));
+    }
+
     return (
         <div className="disk">
             <div className="disk__explorer">
@@ -28,7 +34,7 @@ const Disk = () => {
             <div className="disk__files">
                 <div className="controls">
                     <div className="controls__btns">
-                        <button className="button__back">Back</button>
+                        <button className="button__back" onClick={() => returnHandler()}>Back</button>
                         <button className="button__newdir" onClick={() => popupHandler()}>newdir</button>
                     </div>
                     <input type="text" className="searchbar" defaultValue="Search..."></input>

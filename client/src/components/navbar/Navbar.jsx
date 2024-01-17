@@ -1,7 +1,6 @@
 import React from 'react';
-import './Navbar.less';
+import './Navbar.css';
 import Logo from '../../assets/img/logo.png'
-import './NeNavbar.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOut} from "../../reducers/userReducer";
