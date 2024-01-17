@@ -38,6 +38,17 @@
     flex-direction: row;
     justify-content: center;
   }
+
+  &__upload__input{
+    font-family: 'Lato', sans-serif;
+    display: none;
+  }
+  &__upload__label{
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    padding: 0.2rem;
+    border: 4px dashed #e58f8f;
+  }
 }
 
 .button__back {
@@ -50,5 +61,43 @@
   font-size: 20px;
   font-weight: bold;
   color: #e58f8f;
+}
+
+.dropfield {
+  width: 90%;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  height: calc(90vh - 50px - 40px);
+  margin: 3rem;
+  border: 5px dashed #e58f8f;
+
+  &__content {
+    width: 80%;
+    height: 70%;
+    padding: 1rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 5rem;
+    box-shadow: 0  0 40px 30px #fff;
+  }
+  &__img {
+    width: 20rem;
+    height: 20rem;
+    align-self: center;
+  }
+  &__descr {
+    width: 30%;
+    height: 50%;
+    align-self: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #e58f8f;
+  }
 }
 

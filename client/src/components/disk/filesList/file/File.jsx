@@ -17,13 +17,16 @@ const File = ({file}) => {
         console.log(`FAUVORITE: ${isFav}`);
     };
 
-    function openDirectoryHandler() {
-        dispatch(pushToStack(currentDirectory));
-        dispatch(setDirectory(file._id));
+    function openDirectoryHandler(file) {
+        if(file.filetype === 'dir'){
+            dispatch(pushToStack(currentDirectory));
+            dispatch(setDirectory(file._id));
+        }
+
     }
 
     return (
-        <div className="file" onClick={file.filetype === 'dir' ? () => openDirectoryHandler() : ''}>
+        <div className="file" onClick={() => openDirectoryHandler(file)}>
             <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
             <div className="file__title">{file.filename}</div>
             <div className="file__type">{file.filetype === 'dir'? '' : file.filetype}</div>
