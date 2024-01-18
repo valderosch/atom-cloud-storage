@@ -39,7 +39,6 @@
     justify-self: center;
     align-self: center;
     text-align: center;
-    text-transform: capitalize;
     font-weight: bold;
   }
   &__size {
@@ -72,6 +71,33 @@
     align-self: center;
     text-align: center;
     user-select: none;
+  }
+
+  &__options{
+    color: #424242;
+    width: 100%;
+    height: 100%;
+    grid-column-start: 8;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content:space-between;
+  }
+
+  &__download {
+    cursor: pointer;
+    background-color: dodgerblue;
+    color: white;
+    font-weight: bold;
+  }
+
+  &__delete {
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
   }
 }
 

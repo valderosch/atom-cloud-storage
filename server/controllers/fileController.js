@@ -88,6 +88,27 @@ class FileController {
             });
         }
     }
+
+    async downloadFile(request, response) {
+        try {
+            const file = await File.findOne({_id:request.query.id, user: request.user.id})
+            const path = config.get('filepath') + '\\' + request.user.id + '\\' + file.filepath + '\\' + file.filename;
+            // const pat = `${config.get('filepath')}\\${request.user.id}\\${file.filepath}\\${file.filename}`;
+
+            if(fs.existsSync(path)){
+                return response.download(path, file.filename);
+            } else {
+                return response.status(404).json({
+                    message: "Oops! File not found"
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            return response.status(500).json({
+                message: "Oops! Downloading problems"
+            });
+        }
+    }
 }
 
 module.exports = new FileController();
