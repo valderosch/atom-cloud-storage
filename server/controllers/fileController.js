@@ -65,14 +65,21 @@ class FileController {
             }
             file.mv(filepath);
 
-            const cleanFileName = (name) => name.replace(/[\\/:*?"<>|]/g, '');
+            // const cleanFileName = (name) => name.replace(/[\\/:*?"<>|]/g, '');
             const filetype = file && file.name ? file.name.split('.').pop() : 'unknown';
 
+            let file_path = file.name;
+            console.log(`FILENAME${file.filename} + FILE.NAME ${file.name}`)
+            if (parent) {
+                file_path = parent.filepath + "\\" + file.filename;
+                // file_path = `${parent.filepath}\\${file.filename}`
+            }
+
             const loadedFile = new File({
-                filename: cleanFileName(file.name),
+                filename: file.name,
                 filetype: filetype,
                 size: file.size,
-                filepath: parent?.filepath,
+                filepath: file_path,
                 parent: parent?._id,
                 user: user._id
             })
@@ -92,8 +99,7 @@ class FileController {
     async downloadFile(request, response) {
         try {
             const file = await File.findOne({_id:request.query.id, user: request.user.id})
-            const path = config.get('filepath') + '\\' + request.user.id + '\\' + file.filepath + '\\' + file.filename;
-            // const pat = `${config.get('filepath')}\\${request.user.id}\\${file.filepath}\\${file.filename}`;
+            const path = `${config.get('filepath')}\\${request.user.id}\\${file.filepath}`;
 
             if(fs.existsSync(path)){
                 return response.download(path, file.filename);
@@ -106,6 +112,28 @@ class FileController {
             console.log(e);
             return response.status(500).json({
                 message: "Oops! Downloading problems"
+            });
+        }
+    }
+
+    async deleteFIle(request, response) {
+        try {
+            const file = await File.findOne({_id:request.query.id, user: request.user.id})
+
+            if(!file){
+                return response.status(404).json({
+                    message: 'File not found'
+                });
+            }
+            fileService.deleteFile(file);
+            await File.deleteOne({ _id: file._id });
+            return response.json({
+                message: `File [${file.filename}] was deleted`
+            })
+        } catch (e) {
+            console.log(e);
+            return response.status(500).json({
+                message: "Can not delete file | Maybe Directory not empty"
             });
         }
     }

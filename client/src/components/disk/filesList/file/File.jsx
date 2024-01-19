@@ -4,7 +4,7 @@ import fileImg from '../../../../assets/img/file.png';
 import folderImg from '../../../../assets/img/folder.png';
 import {useDispatch, useSelector} from "react-redux";
 import {pushToStack, setDirectory} from "../../../../reducers/fileReducer";
-import {downloadFile} from "../../../../actions/file";
+import {deleteFile, downloadFile} from "../../../../actions/file";
 
 const File = ({file}) => {
     const [isFav, setIsFav] = useState(file.isFav);
@@ -49,6 +49,11 @@ const File = ({file}) => {
         }
     }
 
+    function deleteHandler(e) {
+        e.stopPropagation();
+        dispatch(deleteFile(file))
+    }
+
     return (
         <div className="file" onClick={() => openDirectoryHandler(file)}>
             <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
@@ -67,7 +72,7 @@ const File = ({file}) => {
                 </div>
             </div>
             <div className="file__options">
-                <div className="file__delete">RM</div>
+                <div onClick={(e) => deleteHandler(e)} className="file__delete">RM</div>
                 {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="file__download">DL</div>}
             </div>
         </div>
