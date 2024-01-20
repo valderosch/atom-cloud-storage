@@ -7,6 +7,7 @@ import dropImage from '../../assets/img/dragdrop.jpg';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory, setPopupDisplay} from "../../reducers/fileReducer";
+import UploadExplorer from "./uploadexplorer/UploadExplorer";
 
 const Disk = () => {
     const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Disk = () => {
                 <FilesList/>
             </div>
             <PopUp/>
+            <UploadExplorer/>
         </div>
             :
             <div className="dropfield" onDrop={fileDropHandle} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>

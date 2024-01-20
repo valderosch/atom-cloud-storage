@@ -1,5 +1,6 @@
 import axios from "axios";
 import {addFile, deleteFileAction, setFiles} from "../reducers/fileReducer";
+import {addFileToUploader, showUploadExplorer} from "../reducers/uploadReducer";
 
 const host = 'http://localhost';
 const port = '5000';
@@ -47,6 +48,13 @@ export function uploadFile(file, dirId){
             if(dirId){
                 formData.append('parent', dirId)
             }
+
+            const uploadFile = {
+                name: file.filename,
+                progress: 0,
+            }
+            dispatch(showUploadExplorer())
+            dispatch(addFileToUploader(uploadFile))
 
             const responce = await axios.post(`${host}:${port}/api/files/upload`, formData,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`,},

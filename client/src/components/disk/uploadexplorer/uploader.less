@@ -1,0 +1,116 @@
+.uploader {
+  height: 35%;
+  width: 30%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px #d2d2d2;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+
+  }
+
+
+  &__header {
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+
+
+  }
+  &__title {
+    height: 55%;
+    font-size: 20px;
+    font-weight: 400;
+    align-self: center;
+    font-family: 'Lato', sans-serif;
+    margin-left: 1rem;
+  }
+  &__close__btn {
+    width: 2rem;
+    height: 2rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-start;
+    user-select: none;
+    border-radius: 1rem;
+  }
+  &__close__btn:hover {
+    background-color: #e58f8f;
+  }
+}
+
+.upload-atom {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    font-weight: 500;
+    box-shadow: 1px 1px 10px #fafafa;
+    background-color: #e9edf6;
+  }
+
+  &__header {
+    width: 95%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    color: #424242;
+  }
+  &__filename {
+    width: 45%;
+    height: 85%;
+    align-self: center;
+    overflow: hidden;
+  }
+  &__progressbar {
+    width: 45%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+
+    &__bar {
+      align-self: flex-end;
+      width: 65%;
+      height: 0.7rem;
+      background-color: transparent;
+      border: 2px solid #424242;
+    }
+
+    &__progress {
+      align-self: center;
+      justify-self: center;
+      width: 3rem;
+      height: inherit;
+      background-color: #4c84e1;
+    }
+
+    &__status {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+}
