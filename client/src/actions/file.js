@@ -1,6 +1,6 @@
 import axios from "axios";
 import {addFile, deleteFileAction, setFiles} from "../reducers/fileReducer";
-import {addFileToUploader, showUploadExplorer} from "../reducers/uploadReducer";
+import {addFileToUploader, changeUploadPercent, showUploadExplorer} from "../reducers/uploadReducer";
 
 const host = 'http://localhost';
 const port = '5000';
@@ -23,15 +23,15 @@ export function getFiles(dirId){
 export function createNewDirectory(dirId, dirName){
     return async dispatch => {
         try{
-            const responce = await axios.post(`${host}:${port}/api/files`,{
+            const response = await axios.post(`${host}:${port}/api/files`,{
                 filename: dirName,
                 parent: dirId,
                 filetype: 'dir'
             }, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`,}
             });
-            dispatch(addFile(responce.data));
-            console.log(responce.data);
+            dispatch(addFile(response.data));
+            console.log(response.data);
         } catch (e) {
             alert(e.response.data.message);
             console.log(e.response.data.message);
@@ -50,25 +50,26 @@ export function uploadFile(file, dirId){
             }
 
             const uploadFile = {
-                name: file.filename,
+                filename: file.name,
                 progress: 0,
+                id: Date.now()
             }
             dispatch(showUploadExplorer())
             dispatch(addFileToUploader(uploadFile))
 
-            const responce = await axios.post(`${host}:${port}/api/files/upload`, formData,  {
+            const response = await axios.post(`${host}:${port}/api/files/upload`, formData,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`,},
                 onUploadProgress: progressEvent => {
                     const totalLength = progressEvent.event.lengthComputable ? progressEvent.total : progressEvent.event.target.getResponseHeader('content-length') || progressEvent.event.target.getResponseHeader('x-decompressed-content-length');
                     console.log('total', totalLength)
                     if (totalLength) {
-                        let progress = Math.round((progressEvent.loaded * 100) / totalLength)
-                        console.log(progress)
+                        uploadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                        dispatch(changeUploadPercent(uploadFile))
                     }
                 }
             });
-            dispatch(addFile(responce.data));
-            console.log(responce.data);
+            dispatch(addFile(response.data));
+            console.log(response.data);
         } catch (e) {
             alert(e.response.data.message);
             console.log(e.response.data.message);

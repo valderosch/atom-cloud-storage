@@ -5,7 +5,7 @@ const REMOVE_FILE_FROM_UPLOADER = "REMOVE_FILE_FROM_UPLOADER";
 const CHANGE_UPLOAD_PERCENT = "CHANGE_UPLOAD_PERCENT";
 
 const defaultState = {
-    isVisible: true,
+    isVisible: false,
     files: [],
 
 }
@@ -16,11 +16,16 @@ export default function uploadReducer(state = defaultState,  action){
         case HIDE_UPLOAD_EXPLORER:
             return {...state, isVisible: false}
         case ADD_FILE_TO_UPLOADER:
-            return {...state, files: [...state.files, {...action.payload, id: state.files.length}]}
+            return {...state, files: [...state.files, action.payload]}
         case REMOVE_FILE_FROM_UPLOADER:
             return {...state, files: [...state.files.filter(file => file.id !== action.payload)]}
         case CHANGE_UPLOAD_PERCENT:
-            return {...state, files: action.payload}
+            return {...state,
+                files: [...state.files.map(
+                    file => file.id === action.payload.id
+                    ? {...file, progress: action.payload.progress}
+                    : {...file}
+                )]}
         default:
             return state;
     }
@@ -42,5 +47,9 @@ export const addFileToUploader = (file) => ({
 export const removeFileFromUploader = (fileId) => ({
     type: REMOVE_FILE_FROM_UPLOADER,
     payload: fileId
+})
 
+export const changeUploadPercent = (payload) => ({
+    type: CHANGE_UPLOAD_PERCENT,
+    payload: payload
 })

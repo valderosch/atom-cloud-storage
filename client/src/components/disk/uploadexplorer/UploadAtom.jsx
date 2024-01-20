@@ -5,12 +5,6 @@ import {removeFileFromUploader} from "../../../reducers/uploadReducer";
 
 const UploadAtom = ({file}) => {
     const dispatch = useDispatch();
-
-
-    function removeFileHandler(e) {
-        
-    }
-
     return (
         <div className="upload-atom">
             <div className="upload-atom__header">
