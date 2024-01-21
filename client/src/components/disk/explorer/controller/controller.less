@@ -1,0 +1,120 @@
+.controller {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__buttons__create {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    height: 30%;
+    width: 70%;
+    align-self: center;
+    border: 1px solid transparent;
+    border-radius: 0.6rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #fffefe;
+    box-shadow: 1px 1px 10px #d2d2d2;
+    z-index: 2;
+
+    &:hover{
+      color: #e58f8f;
+      font-weight: 600;
+    }
+  }
+
+  &__storage {
+    width: 95%;
+    height: 40%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.storage__title {
+  width: 90%;
+  height: 30%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  align-self: center;
+}
+
+.storage__bar__wrapper {
+  width: 90%;
+  height: 0.5rem;
+  border-radius: 1rem;
+  background-color: #e5e5e5;
+  align-self: center;
+}
+
+.storage__bar {
+  width: 1%;
+  height: 100%;
+  background-color: #4c84e1;
+  border-radius: 1rem;
+}
+
+.storage__info {
+  width: 90%;
+  height: 30%;
+  align-self: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #757575;
+}
+
+.button__popup {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.1);
+}
+.button__popup__body {
+  width: 16%;
+  height: 20%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px #b0b0b0;
+  margin-left: 3rem;
+  margin-top: 10rem;
+
+
+  &__makedir, &__loadfile {
+    width: 100%;
+    height: 25%;
+    align-self: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      background-color: #f0f0f3;
+    }
+  }
+  &__item {
+    width: 90%;
+    height: 60%;
+    align-self: center;
+  }
+  &__img {
+    margin-top: 0.1rem;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    align-self: center;
+    justify-self: center;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #424242;
+    font-family: 'Lato', sans-serif;
+  }
+}
