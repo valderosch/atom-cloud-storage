@@ -5,14 +5,24 @@ import {addFileToUploader, changeUploadPercent, showUploadExplorer} from "../red
 const host = 'http://localhost';
 const port = '5000';
 
-export function getFiles(dirId){
+export function getFiles(dirId, filter){
     return async dispatch => {
         try{
-            const responce = await axios.get(`${host}:${port}/api/files${dirId ? '?parent='+dirId : ''}`, {
+            let url = `${host}:${port}/api/files`;
+            if(dirId){
+                url = `${host}:${port}/api/files?parent=${dirId}`;
+            }
+            if(filter){
+                url = `${host}:${port}/api/files?sort=${filter}`;
+            }
+            if(dirId && filter){
+                url = `${host}:${port}/api/files?parent=${dirId}&sort=${filter}`;
+            }
+            const response = await axios.get(url, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`,}
             });
-            dispatch(setFiles(responce.data));
-            console.log(responce.data);
+            dispatch(setFiles(response.data));
+            console.log(response.data);
         } catch (e) {
             alert(e.response.data.message);
             console.log(e.response.data.message);

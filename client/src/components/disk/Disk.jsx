@@ -14,15 +14,11 @@ const Disk = () => {
     const currentDirectory = useSelector(state => state.files.currentDirectory);
     const directoryStack = useSelector(state => state.files.directoryStack);
     const [dragDrop, setDragDrop] = useState(false);
+    const [filter, setFilter] = useState('type');
 
     useEffect(() => {
-        dispatch(getFiles(currentDirectory));
-    }, [currentDirectory, dispatch])
-
-    function popupHandler() {
-        dispatch(setPopupDisplay('flex'));
-        return undefined;
-    }
+        dispatch(getFiles(currentDirectory, filter));
+    }, [currentDirectory, dispatch, filter])
 
     function returnHandler() {
         const prevDirId = directoryStack.pop();
@@ -63,7 +59,6 @@ const Disk = () => {
                 <div className="controls">
                     <div className="controls__btns">
                         <button className="button__back" onClick={() => returnHandler()}>Back</button>
-                        <button className="button__newdir" onClick={() => popupHandler()}>newdir</button>
                         <div className="controls__upload">
                             <label htmlFor="controls__upload__input" className="controls__upload__label">Upload File</label>
                             <input multiple={true} type="file" onChange={(e) => fileUploadHandler(e)} id="controls__upload__input" className="controls__upload__input"/>
@@ -71,7 +66,12 @@ const Disk = () => {
                     </div>
                     <input type="text" className="searchbar" defaultValue="Search..."></input>
                     <div className="controls__filter">
-                        -=-
+                        <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
+                            <option value="filename">by name</option>
+                            <option value="filetype">by type</option>
+                            <option value="size">by size</option>
+                            <option value="date">by date</option>
+                        </select>
                     </div>
                 </div><br/>
                 <FilesList/>
