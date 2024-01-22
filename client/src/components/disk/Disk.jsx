@@ -6,13 +6,14 @@ import './disk.css';
 import dropImage from '../../assets/img/dragdrop.jpg';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
-import {setDirectory, setPopupDisplay} from "../../reducers/fileReducer";
+import {setDirectory} from "../../reducers/fileReducer";
 import UploadExplorer from "./uploadexplorer/UploadExplorer";
 
 const Disk = () => {
     const dispatch = useDispatch();
     const currentDirectory = useSelector(state => state.files.currentDirectory);
     const directoryStack = useSelector(state => state.files.directoryStack);
+    const loader = useSelector(state => state.app.loader);
     const [dragDrop, setDragDrop] = useState(false);
     const [filter, setFilter] = useState('type');
 
@@ -48,6 +49,16 @@ const Disk = () => {
         let files = [...event.dataTransfer.files]
         files.forEach(file => dispatch(uploadFile(file, currentDirectory)))
         setDragDrop(false)
+    }
+
+    if(!loader){
+        return (
+            <div className="loader_wrapper">
+                <div className="loader">
+
+                </div>
+            </div>
+        )
     }
 
     return ( !dragDrop ?

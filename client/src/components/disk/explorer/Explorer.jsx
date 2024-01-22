@@ -11,6 +11,9 @@ const Explorer = () => {
             <div className="explorer__controls">
                 <Controller data={data}/>
             </div>
+            <div className="explorer__content">
+                а
+            </div>
         </div>
     );
 };
