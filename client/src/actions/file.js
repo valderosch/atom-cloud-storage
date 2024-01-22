@@ -1,6 +1,7 @@
 import axios from "axios";
 import {addFile, deleteFileAction, setFiles} from "../reducers/fileReducer";
 import {addFileToUploader, changeUploadPercent, showUploadExplorer} from "../reducers/uploadReducer";
+import {hideAppLoader, showAppLoader} from "../reducers/appReducer";
 
 const host = 'http://localhost';
 const port = '5000';
@@ -8,6 +9,7 @@ const port = '5000';
 export function getFiles(dirId, filter){
     return async dispatch => {
         try{
+            dispatch(showAppLoader())
             let url = `${host}:${port}/api/files`;
             if(dirId){
                 url = `${host}:${port}/api/files?parent=${dirId}`;
@@ -26,6 +28,8 @@ export function getFiles(dirId, filter){
         } catch (e) {
             alert(e.response.data.message);
             console.log(e.response.data.message);
+        } finally {
+            dispatch(hideAppLoader());
         }
     }
 }

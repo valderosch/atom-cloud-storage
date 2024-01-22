@@ -51,7 +51,7 @@ const Disk = () => {
         setDragDrop(false)
     }
 
-    if(!loader){
+    if(loader){
         return (
             <div className="loader_wrapper">
                 <div className="loader">
