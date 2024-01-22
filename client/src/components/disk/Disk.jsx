@@ -8,6 +8,7 @@ import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory} from "../../reducers/fileReducer";
 import UploadExplorer from "./uploadexplorer/UploadExplorer";
+import Searchbar from "./searchbar/Searchbar";
 
 const Disk = () => {
     const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const Disk = () => {
                             <input multiple={true} type="file" onChange={(e) => fileUploadHandler(e)} id="controls__upload__input" className="controls__upload__input"/>
                         </div>
                     </div>
-                    <input type="text" className="searchbar" defaultValue="Search..."></input>
+                    <Searchbar/>
                     <div className="controls__filter">
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
                             <option value="filename">by name</option>

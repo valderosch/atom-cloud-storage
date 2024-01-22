@@ -12,7 +12,11 @@ const Explorer = () => {
                 <Controller data={data}/>
             </div>
             <div className="explorer__content">
-                а
+                - Fauvorites<br/>
+                - DISK<br/>
+                    |_ folder1<br/>
+                    |_ folder2<br/>
+                    |_picture.png<br/>
             </div>
         </div>
     );

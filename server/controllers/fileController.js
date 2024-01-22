@@ -156,6 +156,20 @@ class FileController {
             });
         }
     }
+
+    async searchFile(request, response){
+        try {
+            const searchName = request.query.search;
+            let files = await File.find({user: request.user.id});
+            files = files.filter(file => file.filename.includes(searchName));
+            return response.json(files);
+        } catch (e) {
+            console.log(e);
+            return response.status(500).json({
+                message: "Error while [searching] files"
+            });
+        }
+    }
 }
 
 module.exports = new FileController();
