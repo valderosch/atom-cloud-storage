@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './searchbar.css';
 import {useDispatch, useSelector} from "react-redux";
 import {getFiles, searchFiles} from "../../../actions/file";
+import {showAppLoader} from "../../../reducers/appReducer";
 
 const Searchbar = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -14,6 +15,7 @@ const Searchbar = () => {
         if(searchTimeout !== false) {
             clearTimeout(e.target.value);
         }
+        dispatch(showAppLoader());
         if(e.target.value !== ''){
             setSearchTimeout(setTimeout(() => {
                 dispatch(searchFiles(searchValue));

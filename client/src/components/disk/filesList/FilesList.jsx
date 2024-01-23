@@ -6,6 +6,7 @@ import nodata from '../../../assets/img/search.jpg';
 
 const FilesList = () => {
     const data = useSelector(state => state.files.files).map(file => <File key={file._id} file={file}/>)
+    const fileViewType = useSelector(state => state.files.viewType);
 
     if (data.length === 0){
         return(
@@ -27,21 +28,32 @@ const FilesList = () => {
         )
     }
 
-    return (
-        <div className="filelist">
-            <div className="filelist__header">
-                <div className="filelist__img">+</div>
-                <div className="filelist__title">Title</div>
-                <div className="filelist__type">Type</div>
-                <div className="filelist__size">Size</div>
-                <div className="filelist__date">Date</div>
-                <div className="filelist__fav">Favourite</div>
+    if (fileViewType === 'list'){
+        return (
+            <div className="filelist">
+                <div className="filelist__header">
+                    <div className="filelist__img">+</div>
+                    <div className="filelist__title">Title</div>
+                    <div className="filelist__type">Type</div>
+                    <div className="filelist__size">Size</div>
+                    <div className="filelist__date">Date</div>
+                    <div className="filelist__fav">Favourite</div>
+                </div>
+                <div className="filelist__board">
+                    {data}
+                </div>
             </div>
-            <div className="filelist__board">
-                {data}
+        );
+    }
+    if(fileViewType === 'grid'){
+        return (
+            <div className="filegrid">
+                <div className="filegrid__board">
+                    {data}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default FilesList;

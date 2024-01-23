@@ -138,6 +138,8 @@ export function searchFiles(searchValue){
         } catch (e) {
             alert(e.response.data.message);
             console.log(e.response.data.message);
+        } finally {
+            dispatch(hideAppLoader());
         }
     }
 }

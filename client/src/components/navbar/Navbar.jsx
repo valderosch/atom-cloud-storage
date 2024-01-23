@@ -4,6 +4,7 @@ import Logo from '../../assets/img/logo.png'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOut} from "../../reducers/userReducer";
+import Searchbar from "../disk/searchbar/Searchbar";
 
 const Navbar = () => {
     const isUserAuthorised = useSelector(state => state.user.isAuthorised);
@@ -16,6 +17,11 @@ const Navbar = () => {
                     <img src={Logo} alt="cloud-flat" className="logo"/>
                     <h3 className="logo_title">Atom Cloud</h3>
                 </div>
+                {isUserAuthorised &&
+                    <div className="navbar_search">
+                        <Searchbar/>
+                    </div>
+                }
                 <div className="auth">
                     {!isUserAuthorised &&
                         <p className="navbar_login">
