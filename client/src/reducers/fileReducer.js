@@ -31,7 +31,7 @@ export default function fileReducer(state = defaultState,  action){
         case DELETE_FILE:
             return {...state, files: [...state.files.filter(file => file._id !== action.payload)]}
         case SET_VIEW_TYPE:
-            return {...state, view: action.payload}
+            return {...state, viewType: action.payload}
         default:
             return state;
     }

@@ -10,6 +10,7 @@ const File = ({file}) => {
     const [isFav, setIsFav] = useState(file.isFav);
     const dispatch = useDispatch();
     const currentDirectory = useSelector(state => state.files.currentDirectory);
+    const fileViewType = useSelector(state => state.files.viewType);
 
     const handleFavClick = () => {
         setIsFav(!isFav);
@@ -54,29 +55,44 @@ const File = ({file}) => {
         dispatch(deleteFile(file))
     }
 
-    return (
-        <div className="file" onClick={() => openDirectoryHandler(file)}>
-            <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
-            <div className="file__title">{file.filename}</div>
-            <div className="file__type">{file.filetype === 'dir'? '' : file.filetype}</div>
-            <div className="file__size">{file.filetype === 'dir'? '' : formatFileSize(file.size)}</div>
-            <div className="file__date">{file.filetype === 'dir'? '' : file.date.slice(0,10)}</div>
-            <div className="fav" onClick={event => event.stopPropagation()}>
-                <div
-                    className={`file__isfav ${isFav ? 'filled' : ''}`}
-                    onClick={handleFavClick}
-                    role="button"
-                    tabIndex={0}
-                >
-                    {isFav ? '❤️' : '🤍'}️
+    if(fileViewType === 'list') {
+        return (
+            <div className="file" onClick={() => openDirectoryHandler(file)}>
+                <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
+                <div className="file__title">{file.filename}</div>
+                <div className="file__type">{file.filetype === 'dir'? '' : file.filetype}</div>
+                <div className="file__size">{file.filetype === 'dir'? '' : formatFileSize(file.size)}</div>
+                <div className="file__date">{file.filetype === 'dir'? '' : file.date.slice(0,10)}</div>
+                <div className="fav" onClick={event => event.stopPropagation()}>
+                    <div
+                        className={`file__isfav ${isFav ? 'filled' : ''}`}
+                        onClick={handleFavClick}
+                        role="button"
+                        tabIndex={0}
+                    >
+                        {isFav ? '❤️' : '🤍'}️
+                    </div>
+                </div>
+                <div className="file__options">
+                    <div onClick={(e) => deleteHandler(e)} className="file__delete">RM</div>
+                    {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="file__download">DL</div>}
                 </div>
             </div>
-            <div className="file__options">
-                <div onClick={(e) => deleteHandler(e)} className="file__delete">RM</div>
-                {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="file__download">DL</div>}
+        );
+    }
+    if(fileViewType === 'grid') {
+        return (
+            <div className="grid__file" onClick={() => openDirectoryHandler(file)}>
+                <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="grid__file__icon"/>
+                <div className="grid__file__title">{file.filename}</div>
+                <div className="grid__file__options">
+                    <div onClick={(e) => deleteHandler(e)} className="grid__file__delete">RM</div>
+                    {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="grid__file__download">DL</div>}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 };
 
 export default File;
