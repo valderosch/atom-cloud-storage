@@ -31,6 +31,20 @@ const FilesList = () => {
     if (fileViewType === 'list'){
         return (
             <div className="filelist">
+                <div className="filelist__types">
+                    <div className="docs">
+                        <img src="" alt="docs" className="docs_img"/>
+                    </div>
+                    <div className="images">
+                        <img src="" alt="images" className="images_img"/>
+                    </div>
+                    <div className="videos">
+                        <img src="" alt="videos" className="videos_img"/>
+                    </div>
+                    <div className="other">
+                        <img src="" alt="other" className="other_img"/>
+                    </div>
+                </div>
                 <div className="filelist__header">
                     <div className="filelist__img">+</div>
                     <div className="filelist__title">Title</div>

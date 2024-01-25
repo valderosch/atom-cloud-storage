@@ -11,6 +11,8 @@ const File = ({file}) => {
     const dispatch = useDispatch();
     const currentDirectory = useSelector(state => state.files.currentDirectory);
     const fileViewType = useSelector(state => state.files.viewType);
+    const [fileContext, setFileContext] = useState(false);
+    let filePosition = {};
 
     const handleFavClick = () => {
         setIsFav(!isFav);
@@ -55,6 +57,19 @@ const File = ({file}) => {
         dispatch(deleteFile(file))
     }
 
+    function fileContextMenuHandler(e) {
+        e.stopPropagation();
+        setFileContext(!fileContext);
+
+        const gridFile = e.currentTarget;
+        const rect = gridFile.getBoundingClientRect();
+        filePosition =({
+            top: `${rect.top + window.scrollY}px`,
+            left: `${rect.left + window.scrollX}px`,
+        });
+        console.log(filePosition);
+    }
+
     if(fileViewType === 'list') {
         return (
             <div className="file" onClick={() => openDirectoryHandler(file)}>
@@ -78,21 +93,55 @@ const File = ({file}) => {
                     {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="file__download">DL</div>}
                 </div>
             </div>
+
         );
     }
+
     if(fileViewType === 'grid') {
         return (
             <div className="grid__file" onClick={() => openDirectoryHandler(file)}>
                 <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="grid__file__icon"/>
                 <div className="grid__file__title">{file.filename}</div>
-                <div className="grid__file__options">
-                    <div onClick={(e) => deleteHandler(e)} className="grid__file__delete">RM</div>
-                    {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="grid__file__download">DL</div>}
+                <div className="grid__file__options" onClick={(e) => fileContextMenuHandler(e)}>
+                    o
                 </div>
+                {fileContext &&
+                    <div className="filecontext__content" style = {filePosition}>
+                        <div className="filecontex__list">
+                            {file.filetype !== 'dir' &&
+                                <div className="filecontext__download">
+                                    <img src="" alt="icon" className="filecontex__img"/>
+                                    <div onClick={(e) => downloadHandler(e) }
+                                         className="grid__file__download"> download file
+                                    </div>
+                                </div>
+                            }
+                            <div className="filecontext__rename">
+                                <img src="" alt="icon" className="filecontex__img"/>
+                                <div className="filecontext__description">rename {file.filetype === 'dir'? 'directory' : 'file'}</div>
+                            </div>
+                            <div className="filecontext__duplicate">
+                                <img src="" alt="icon" className="filecontex__img"/>
+                                <div className="filecontext__description">make copy</div>
+                            </div>
+                            <div className="filecontext__share">
+                                <img src="" alt="icon" className="filecontex__img"/>
+                                <div className="filecontext__description">share file</div>
+                            </div>
+                            <div className="filecontext__viewinfo">
+                                <img src="" alt="icon" className="filecontex__img"/>
+                                <div className="filecontext__description">view information</div>
+                            </div>
+                            <div className="filecontext__delete" onClick={(e) => deleteHandler(e)}>
+                                <img src="" alt="icon" className="filecontex__img"/>
+                                <div className="filecontext__description">delete {file.filetype === 'dir'? 'directory' : 'file'}</div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         );
     }
-
 };
 
 export default File;
