@@ -3,7 +3,7 @@
   height: 2.5rem;
   border-bottom: 2px solid #e0e0e0;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1.5fr .5fr;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1.5fr .5fr .5fr;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
 
@@ -59,33 +59,45 @@
     align-self: center;
     text-align: center;
   }
-
+  &__fav {
+    width: 2rem;
+    height: 2rem;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    align-content: center;
+  }
   &__isfav {
     grid-column-start: 7;
     cursor: pointer;
+    width: 1.7rem;
+    height: 1.7rem;
     font-size: 1.3rem;
-    line-height: 1;
     transition: color 0.5s;
+    line-height: 1.5rem;
     display: flex;
-    width: 2rem;
-    height: 2rem;
-    justify-self: center;
-    align-self: center;
-    text-align: center;
+    margin: 6%;
     user-select: none;
   }
 
   &__options{
     color: #424242;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 70%;
     grid-column-start: 8;
     justify-self: center;
     align-self: center;
     text-align: center;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content:space-between;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.5rem;
+    user-select: none;
+    &:hover {
+      background-color: #d2cece;
+      color: #1f1f1f;
+      font-weight: 900;
+      border-radius: 2rem;
+    }
   }
 
   &__download {
@@ -112,11 +124,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e5f0fc;
+  background-color: #ffffff;
   border-radius: 1rem;
+  box-shadow: 1px 1px 10px #d2d2d2;
 
   &:hover {
-    background-color: #c2d2e0;
+    background-color: #e5f0fc;
   }
 
   &__icon {
@@ -126,47 +139,142 @@
     margin: 6% 5%;
   }
 
-  &__title {
-    width: 80%;
+  &__body {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    width: 90%;
     height: 30%;
+  }
+  &__title {
+    width: 70%;
+    height: 45%;
     grid-column-start: 2;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     font-size: 14px;
-    text-align: center;
     overflow: hidden;
-    margin-top: 5%;
     padding: 0;
+    margin-left: 7%;
     line-height: 1;
-    align-self: center;
+    align-self: flex-end;
     color: #424242;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   &__options {
-    width: 1.5rem;
-    height: 2rem;
-    background-color: #4c84e1;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
     align-self: flex-end;
+    position: relative;
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 30px;
+    user-select: none;
+
+    &:hover {
+      background-color: #b9ddf6;
+      border-radius: 2rem;
+    }
+
   }
 }
 
-.filecontext__content{
+
+.list__filecontext{
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  margin-left: 57%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px #bbbbbb;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &__content{
+    width: 90%;
+    height: 90%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &__options {
+    width: 100%;
+    height: 40%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    user-select: none;
+    border-radius: 0.5rem;
+    &:hover{
+      background-color: #ececec;
+    }
+  }
+}
+.filecontext{
   position: absolute;
   //width: 100%;
   //height: 92vh;
   //top:60px;
   //left:0;
-  //z-index: 3;
+  z-index: 3;
   //background-color: rgba(0,0,0, 0.07);
   margin-left: 32%;
   width: 20%;
   height: 50%;
-  background-color: #4c84e1;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px #bbbbbb;
 
-  &__content {
-    width: 30%;
+  &__list {
+    width: 100%;
+    height: 97%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-end;
+  }
+
+  &__option {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    user-select: none;
+
+    &:hover{
+      background-color: #ececec;
+    }
+  }
+
+  &__img {
+    width: 1.8rem;
+    height: 1.8rem;
+    align-self: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  &__description {
+    width: 60%;
+    height: 60%;
+    align-self: center;
+    color: #424242;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
   }
 }
+
 

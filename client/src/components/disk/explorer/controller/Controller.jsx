@@ -22,8 +22,6 @@ const Controller = ({data}) => {
         return undefined;
     }
 
-
-
     return (
         <div className="controller">
             <button className="controller__buttons__create" onClick={(e) => createButtonHandler(e)}>Create  +</button>
