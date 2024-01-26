@@ -4,6 +4,7 @@ import {getFiles, uploadFile} from "../../actions/file";
 import FilesList from "./filesList/FilesList";
 import './disk.css';
 import dropImage from '../../assets/img/dragdrop.jpg';
+import breadcrumbsSeparator from '../../assets/img/separator.svg';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory, setViewType} from "../../reducers/fileReducer";
@@ -25,11 +26,6 @@ const Disk = () => {
     function returnHandler() {
         const prevDirId = directoryStack.pop();
         dispatch(setDirectory(prevDirId));
-    }
-
-    function fileUploadHandler(e) {
-        const files = [...e.target.files];
-        files.forEach(file => dispatch(uploadFile(file, currentDirectory)))
     }
 
     function dragEnterHandler(event) {
@@ -71,17 +67,49 @@ const Disk = () => {
                 <div className="controls">
                     <div className="controls__btns">
                         <button className="button__back" onClick={() => returnHandler()}>Back</button>
-                        <div className="controls__upload">
-                            <label htmlFor="controls__upload__input" className="controls__upload__label">Upload File</label>
-                            <input multiple={true} type="file" onChange={(e) => fileUploadHandler(e)} id="controls__upload__input" className="controls__upload__input"/>
+                        <div className="crumbs">
+                            <div className="crumbs__body">
+                                <div className="crumbs__element">
+                                    <div className="crumbs__title">
+                                        <div className="crumbs__title__text">Main</div>
+                                    </div>
+                                    <div className="crumbs__divider">
+                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
+                                    </div>
+                                </div>
+                                <div className="crumbs__element">
+                                    <div className="crumbs__title">
+                                        <div className="crumbs__title__text">Images</div>
+                                    </div>
+                                    <div className="crumbs__divider">
+                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
+                                    </div>
+                                </div>
+                                <div className="crumbs__element">
+                                    <div className="crumbs__title">
+                                        <div className="crumbs__title__text">Summer2018</div>
+                                    </div>
+                                    <div className="crumbs__divider">
+                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
+                                    </div>
+                                </div>
+                                <div className="crumbs__element">
+                                    <div className="crumbs__title">
+                                        <div className="crumbs__title__text">July</div>
+                                    </div>
+                                    <div className="crumbs__divider">
+                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="controls__filter">
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
-                            <option value="filename">by name</option>
-                            <option value="filetype">by type</option>
-                            <option value="size">by size</option>
-                            <option value="date">by date</option>
+                            <option value="filename">name</option>
+                            <option value="filetype">type</option>
+                            <option value="size">size</option>
+                            <option value="date">date</option>
                         </select>
                         <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
                         <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>

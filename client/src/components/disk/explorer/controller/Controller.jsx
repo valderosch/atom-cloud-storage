@@ -4,10 +4,12 @@ import fileImg from '../../../../assets/img/file.png';
 import dirImg from '../../../../assets/img/folder.png';
 import { setPopupDisplay} from "../../../../reducers/fileReducer";
 import './controller.css';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {uploadFile} from "../../../../actions/file";
 
 const Controller = ({data}) => {
     const usedSpace = calculatePercentage(data.total, data.available);
+    const currentDirectory = useSelector(state => state.files.currentDirectory);
     const [buttonPopup, setButtonPopup] = useState(false);
     const dispatch = useDispatch();
 
@@ -20,6 +22,11 @@ const Controller = ({data}) => {
         dispatch(setPopupDisplay('flex'));
         setButtonPopup(false);
         return undefined;
+    }
+
+    function fileUploadHandler(e) {
+        const files = [...e.target.files];
+        files.forEach(file => dispatch(uploadFile(file, currentDirectory)))
     }
 
     return (
@@ -44,7 +51,10 @@ const Controller = ({data}) => {
                         <div className="button__popup__body__loadfile">
                            <div className="button__popup__body__item">
                                <img className="button__popup__body__img" src={fileImg} alt="file"/>
-                               <span className="button__popup__body__title">Load file</span>
+                               <div className="button__popup__body__item">
+                                   <label htmlFor="button__popup__body__item__upload__input" className="button__popup__body__item__upload__label">Upload File</label>
+                                   <input multiple={true} type="file" onChange={(e) => fileUploadHandler(e)} id="button__popup__body__item__upload__input" className="controls__upload__input"/>
+                               </div>
                            </div>
                         </div>
                     </div>

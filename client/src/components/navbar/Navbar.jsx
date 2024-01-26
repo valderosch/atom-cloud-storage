@@ -34,7 +34,7 @@ const Navbar = () => {
                         </p>
                     }
                     {isUserAuthorised &&
-                        <p className="navbar_login" onClick={() => dispatch(logOut())}>LogOut</p>
+                        <p className="auth_btn" onClick={() => dispatch(logOut())}>LogOut</p>
                     }
                 </div>
             </div>

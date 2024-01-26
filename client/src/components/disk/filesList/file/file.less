@@ -33,6 +33,9 @@
     color: #424242;
     white-space: nowrap;
     text-overflow: ellipsis;
+    &:hover{
+      text-decoration: underline;
+    }
   }
   &__type {
     color: #424242;
@@ -184,12 +187,11 @@
   }
 }
 
-
 .list__filecontext{
   position: absolute;
-  width: 15%;
+  width: 18%;
   height: 15%;
-  margin-left: 57%;
+  margin-left: 55%;
   border-radius: 1rem;
   overflow: hidden;
   background-color: #ffffff;
@@ -210,8 +212,8 @@
 
   &__options {
     width: 100%;
-    height: 40%;
-    margin-bottom: 5%;
+    height: 45%;
+    margin: 2% 0;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -219,6 +221,7 @@
     border-radius: 0.5rem;
     &:hover{
       background-color: #ececec;
+      text-decoration: underline;
     }
   }
 }
@@ -233,17 +236,21 @@
   margin-left: 32%;
   width: 20%;
   height: 50%;
+  border-radius: 1rem;
+  overflow: hidden;
   background-color: #ffffff;
+  display: flex;
+  justify-content: center;
   box-shadow: 1px 1px 10px #bbbbbb;
 
   &__list {
-    width: 100%;
+    width: 95%;
     height: 97%;
     margin-top: 2%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-self: flex-end;
+    align-self: center;
   }
 
   &__option {
@@ -253,9 +260,11 @@
     flex-direction: row;
     justify-content: flex-start;
     user-select: none;
+    border-radius: 0.5rem;
 
     &:hover{
       background-color: #ececec;
+      text-decoration: underline;
     }
   }
 

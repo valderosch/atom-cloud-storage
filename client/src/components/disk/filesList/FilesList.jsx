@@ -52,6 +52,7 @@ const FilesList = () => {
     if(fileViewType === 'grid'){
         return (
             <div className="filegrid">
+                <hr className='horizontal_line'/>
                 <div className="files__types">
                     <div className="docs">
                         <img src={docsImg} alt="docs" className="docs_img"/>
