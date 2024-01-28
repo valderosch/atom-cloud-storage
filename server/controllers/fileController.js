@@ -3,6 +3,7 @@ const config = require('config');
 const File = require('../models/File');
 const User = require('../models/User');
 const fs = require('fs');
+const UUid = require('uuid');
 
 class FileController {
     async createDirectory (request, response){
@@ -52,7 +53,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(500).json({
-                message: "Ooops! We can`t get this file"
+                message: "Error while [fetching] file"
             });
         }
     }
@@ -110,7 +111,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(505).json({
-                message: "Cant upload file"
+                message: "Error while [uploading] files"
             });
         }
     }
@@ -152,7 +153,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(500).json({
-                message: "Can not delete file | Maybe Directory not empty"
+                message: "Error while [deleting] files"
             });
         }
     }
@@ -167,6 +168,39 @@ class FileController {
             console.log(e);
             return response.status(500).json({
                 message: "Error while [searching] files"
+            });
+        }
+    }
+
+    async uploadAvatar(request, response){
+        try{
+            const file = request.files.file
+            const user = await User.findById(request.user.id);
+            const avatarFileName = UUid.v4() + '.jpg';
+            file.mv(`${config.get('staticPath')}\\${avatarFileName}`);
+            user.avatar = avatarFileName;
+            await user.save();
+            return response.json(user);
+        } catch (e) {
+            console.log(e);
+            return response.status(500).json({
+                message: "Error while [uploading] avatar file"
+            });
+        }
+    }
+
+    async deleteAvatar(request, response){
+        try{
+            const user = await User.findById(request.user.id);
+            fs.unlinkSync(`${config.get('staticPath')}\\${user.avatar}`);
+            user.avatar = null;
+
+            await user.save();
+            return response.json(user);
+        } catch (e) {
+            console.log(e);
+            return response.status(500).json({
+                message: "Error while [deleting] avatar"
             });
         }
     }
