@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {getFiles} from "../../../actions/file";
 import {useDispatch} from "react-redux";
+import './filter.css';
+import {setViewType} from "../../../reducers/fileReducer";
 
 
 const Filter = () => {
@@ -19,6 +21,8 @@ const Filter = () => {
                 <option value="size">by size</option>
                 <option value="date">by date</option>
             </select>
+            <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
+            <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>
         </div>
     );
 };
