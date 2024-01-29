@@ -9,6 +9,7 @@ import {useEffect} from "react";
 import {authentication} from "../actions/user";
 import Disk from "./disk/Disk";
 import {Navigate} from "react-router";
+import Profile from "./profile/Profile";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                       :
                       <Routes>
                           <Route exact path="/" element={<Disk/>}/>
+                          <Route exact path="/profile" element={<Profile/>}/>
                           <Route path="*" element={<Navigate to="/" />} />
                       </Routes>
                   }

@@ -51,3 +51,31 @@ export const authentication = () => {
         }
     }
 }
+
+export const uploadUserAvatar = (file) => {
+    return async dispatch => {
+        try{
+            const formData = new FormData();
+            formData.append('file', file);
+            const response = await axios.post(`${host}:${port}/api/files/avatar`, formData,
+                {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+            dispatch(setUser(response.data));
+            console.log('UPLOADED AVATAR');
+        } catch (e) {
+            console.log(e.res.data.message);
+        }
+    }
+}
+
+export const removeUserAvatar = () => {
+    return async dispatch => {
+        try{
+            const response = await axios.delete(`${host}:${port}/api/files/avatar`,
+            {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+            dispatch(setUser(response.data));
+            console.log('DELETED AVATAR');
+        } catch (e) {
+            console.log(e.res.data.message);
+        }
+    }
+}

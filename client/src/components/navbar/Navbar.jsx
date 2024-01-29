@@ -5,10 +5,15 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOut} from "../../reducers/userReducer";
 import Searchbar from "../disk/searchbar/Searchbar";
+import noAvatar from '../../assets/img/user.png';
+import {API_URL} from "../../config";
 
 const Navbar = () => {
     const isUserAuthorised = useSelector(state => state.user.isAuthorised);
+    const currentUser = useSelector(state => state.user.currentUser);
+    console.log(currentUser);
     const dispatch = useDispatch();
+    const avatarImg = currentUser && currentUser.avatar ? `${API_URL + currentUser.avatar}` : noAvatar;
 
     return (
         <div className="navbar">
@@ -34,7 +39,12 @@ const Navbar = () => {
                         </p>
                     }
                     {isUserAuthorised &&
-                        <p className="auth_btn" onClick={() => dispatch(logOut())}>LogOut</p>
+                        <div className="auth__block">
+                            <NavLink to='/profile'>
+                                    <img src={avatarImg} alt="user" className="avatar__img"/>
+                            </NavLink>
+                            <p className="auth_btn" onClick={() => dispatch(logOut())}>Logout</p>
+                        </div>
                     }
                 </div>
             </div>
