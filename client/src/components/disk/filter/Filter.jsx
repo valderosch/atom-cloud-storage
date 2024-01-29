@@ -16,10 +16,10 @@ const Filter = () => {
     return (
         <div className="filter">
             <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
-                <option value="filename">by name</option>
-                <option value="filetype">by type</option>
-                <option value="size">by size</option>
-                <option value="date">by date</option>
+                <option value="filename">name</option>
+                <option value="filetype">type</option>
+                <option value="size">size</option>
+                <option value="date">date</option>
             </select>
             <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
             <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>

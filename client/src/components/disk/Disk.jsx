@@ -110,8 +110,10 @@ const Disk = () => {
                             <option value="size">size</option>
                             <option value="date">date</option>
                         </select>
-                        <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
-                        <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>
+                        <div className="filter__buttons">
+                            <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
+                            <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>
+                        </div>
                     </div>
                 </div><br/>
                 <FilesList/>

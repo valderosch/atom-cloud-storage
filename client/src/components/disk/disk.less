@@ -101,10 +101,10 @@
 
   &__filter {
     width: 30%;
-    background-color: #757575;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: flex-end;
   }
 
   &__upload__input{
@@ -118,6 +118,29 @@
     border: 4px dashed #e58f8f;
   }
 }
+.filter__select {
+  width: 35%;
+  height: 50%;
+  background-color: transparent;
+  border-bottom: 2px solid #424242;
+  color: #424242;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 5%;
+  outline: none;
+  &:active, &:focus {
+    border-color: transparent;
+    border-bottom-color: #e58f8f;
+  }
+}
+
+.filter__buttons {
+  width: 30%;
+  height: 40%;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}
 
 .filter__list, .filter__grid {
   width: 1.5rem;
@@ -128,6 +151,8 @@
   background: no-repeat center center;
   background-size: contain;
   margin: 0 0.1rem;
+  background-color: #e7bdbd;
+  border-radius: .3rem;
 }
 .filter__list{
   background-image: url("../../assets/img/list.svg");
