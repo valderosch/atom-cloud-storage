@@ -10,10 +10,9 @@ import {API_URL} from "../../config";
 
 const Navbar = () => {
     const isUserAuthorised = useSelector(state => state.user.isAuthorised);
-    const user = useSelector(state => state.user.currentUser);
-    console.log(user);
+    const currentUser = useSelector(state => state.user.currentUser);
     const dispatch = useDispatch();
-    const avatarImg = user.avatar ? `${API_URL + '24a5a1f9-2178-47ca-9cce-8760e980b04e.jpg'}` : noAvatar;
+    const avatarImg = currentUser && currentUser.avatar ? `${API_URL + currentUser.avatar}` : noAvatar;
 
     return (
         <div className="navbar">
@@ -41,7 +40,7 @@ const Navbar = () => {
                     {isUserAuthorised &&
                         <div className="auth__block">
                             <NavLink to='/profile'>
-                                    <img src={avatarImg} alt="user" className="avatar__img"/>
+                                    <img  key={avatarImg} src={avatarImg} alt="user" className="avatar__img"/>
                             </NavLink>
                             <p className="auth_btn" onClick={() => dispatch(logOut())}>Logout</p>
                         </div>

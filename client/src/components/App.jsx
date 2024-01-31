@@ -17,7 +17,8 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(authentication())
+        dispatch(authentication());
+        console.log('inited auth');
     }, [dispatch])
 
   return (

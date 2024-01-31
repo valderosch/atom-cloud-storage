@@ -66,7 +66,7 @@ class FileController {
 
             if(user.usedSpace + file.size > user.storageSpace){
                 return request.status(400).json({
-                    message: "You don`t have space for this operation. Please delete previous files to upload new."
+                    message: "You don`t have space for this operation. Please delete previous assidefiles to upload new."
                 })
             }
             user.usedSpace = user.usedSpace + file.size;
@@ -111,7 +111,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(505).json({
-                message: "Error while [uploading] files"
+                message: "Error while [uploading] assidefiles"
             });
         }
     }
@@ -153,7 +153,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(500).json({
-                message: "Error while [deleting] files"
+                message: "Error while [deleting] assidefiles"
             });
         }
     }
@@ -167,7 +167,7 @@ class FileController {
         } catch (e) {
             console.log(e);
             return response.status(500).json({
-                message: "Error while [searching] files"
+                message: "Error while [searching] assidefiles"
             });
         }
     }
