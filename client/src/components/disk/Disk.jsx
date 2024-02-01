@@ -105,10 +105,10 @@ const Disk = () => {
                     </div>
                     <div className="controls__filter">
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
-                            <option value="filename">name</option>
-                            <option value="filetype">type</option>
-                            <option value="size">size</option>
-                            <option value="date">date</option>
+                            <option className='option' value="filename">name</option>
+                            <option className='option' value="filetype">type</option>
+                            <option className='option' value="size">size</option>
+                            <option className='option' value="date">date</option>
                         </select>
                         <div className="filter__buttons">
                             <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>

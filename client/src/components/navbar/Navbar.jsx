@@ -17,10 +17,12 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="container">
-                <div className="navbar_logo">
-                    <img src={Logo} alt="cloud-flat" className="logo"/>
-                    <h3 className="logo_title">Atom Cloud</h3>
-                </div>
+               <NavLink className="logo__link" to='/'>
+                   <div className="navbar_logo">
+                       <img src={Logo} alt="cloud-flat" className="logo"/>
+                       <h3 className="logo_title">Atom Cloud</h3>
+                   </div>
+               </NavLink>
                 {isUserAuthorised &&
                     <div className="navbar_search">
                         <Searchbar/>

@@ -50,8 +50,13 @@ const AsideFilesList = () => {
     return (
         <div className='aside-files-list'>
             <h3 className='aside__title'>Your Cloud</h3>
+            <Folder className='aside__fav' name={'Fauvorites'} content={[
+                { name: 'Secret.mp4', type: 'file' },
+                { name: 'Expo.txt', type: 'file' },
+            ]}/>
+            <hr className='hr'/>
             {mockStructure.map((item) => (
-                <Folder className="aside__item__true" key={item.name} name={item.name} content={item.content} />
+                <Folder className="aside__item__true" key={item.name} name={item.name} content={item.content} isOpen={true}/>
             ))}
         </div>
     );

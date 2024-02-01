@@ -105,6 +105,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+
   }
 
   &__upload__input{
@@ -128,9 +129,35 @@
   font-weight: 600;
   margin: 0 5%;
   outline: none;
+  appearance: none;
   &:active, &:focus {
     border-color: transparent;
     border-bottom-color: #e58f8f;
+  }
+  &::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .option {
+    color: #424242;
+    width: 100%;
+    background-color: #f3fcff;
+    box-shadow: none;
+    appearance: none;
+    border-color: #f3fcff;
+    outline: #f3fcff;
+    padding: 1rem;
+    &:hover{
+      border: 1px solid #424242;
+      background-color: #f3fcff;
+    }
+    &:checked {
+      color: #e58f8f;
+    }
   }
 }
 
