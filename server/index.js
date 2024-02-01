@@ -1,7 +1,7 @@
 const express = require("express");
-const  fileUpload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 const mongoose = require('mongoose');
-const  config = require("config");
+const config = require("config");
 const authRouter = require("./routes/auth.routes");
 const fileRouter = require("./routes/file.routes");
 const corsMiddleWare = require('./middleware/cors.middleware');
@@ -17,7 +17,7 @@ app.use(corsMiddleWare);
 app.use(express.json());
 app.use(express.static('static'))
 app.use('/api/auth', authRouter);
-app.use('/api/assidefiles', fileRouter);
+app.use('/api/files', fileRouter);
 
 const start = async () => {
     try{
@@ -29,7 +29,6 @@ const start = async () => {
     } catch (e){
         console.log(e);
     }
-
 }
 
 start()
