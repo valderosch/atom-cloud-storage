@@ -9,6 +9,7 @@ import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory, setViewType} from "../../reducers/fileReducer";
 import UploadExplorer from "./uploadexplorer/UploadExplorer";
+import BreadCrumbs from "./breadcrumbs/BreadCrumbs";
 
 
 const Disk = () => {
@@ -102,6 +103,7 @@ const Disk = () => {
                                 </div>
                             </div>
                         </div>
+                        {/*<BreadCrumbs/>*/}
                     </div>
                     <div className="controls__filter">
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
