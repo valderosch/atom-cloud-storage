@@ -9,7 +9,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.currentUser);
     console.log(user);
-    const username = 'badmail';
+    const username = user.email ? user.email.split('@') : 'valder';
 
 
     function onChangeHandler(e) {
