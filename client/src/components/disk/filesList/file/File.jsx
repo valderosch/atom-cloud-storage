@@ -37,6 +37,7 @@ const File = ({file}) => {
     function downloadHandler(e) {
         e.stopPropagation();
         downloadFile(file);
+        setFileContext(false)
     }
 
     function formatFileSize(size) {
@@ -62,6 +63,7 @@ const File = ({file}) => {
     function deleteHandler(e) {
         e.stopPropagation();
         dispatch(deleteFile(file))
+        setFileContext(false);
     }
 
     function fileContextMenuHandler(e) {
@@ -118,10 +120,6 @@ const File = ({file}) => {
                         </div>
                     </div>
                 }
-                {/*<div className="file__options">*/}
-                {/*    <div onClick={(e) => deleteHandler(e)} className="file__delete">RM</div>*/}
-                {/*    {file.filetype !== 'dir' && <div onClick={(e) => downloadHandler(e) } className="file__download">DL</div>}*/}
-                {/*</div>*/}
             </div>
 
         );

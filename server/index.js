@@ -7,7 +7,7 @@ const fileRouter = require("./routes/file.routes");
 const corsMiddleWare = require('./middleware/cors.middleware');
 
 const app = express();
-const PORT = config.get('serverPort');
+const PORT = process.env.PORT || config.get('serverPort');
 
 app.use(fileUpload({
     defCharset: 'utf8',

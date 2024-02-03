@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './explorer.css';
 import Controller from "./controller/Controller";
 import AsideFilesList from "./assidefiles/AsideFilesList";
