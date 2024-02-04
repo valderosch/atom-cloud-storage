@@ -9,7 +9,7 @@ import copyImg from '../../../../assets/img/context/copy.png';
 import infoImg from '../../../../assets/img/context/information.png';
 import deleteImg from '../../../../assets/img/context/delete.png';
 import {useDispatch, useSelector} from "react-redux";
-import {pushToStack, setDirectory} from "../../../../reducers/fileReducer";
+import {pushToBreadcrumbsStack, pushToStack, setDirectory} from "../../../../reducers/fileReducer";
 import {deleteFile, downloadFile} from "../../../../actions/file";
 
 const File = ({file}) => {
@@ -29,8 +29,10 @@ const File = ({file}) => {
     function openDirectoryHandler(file) {
         setFileContext(false);
         if(file.filetype === 'dir'){
+            const directoryInfo = file.filename
             dispatch(pushToStack(currentDirectory));
             dispatch(setDirectory(file._id));
+            dispatch(pushToBreadcrumbsStack(directoryInfo));
         }
     }
 

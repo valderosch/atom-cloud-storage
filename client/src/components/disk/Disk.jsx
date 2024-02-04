@@ -4,7 +4,6 @@ import {getFiles, uploadFile} from "../../actions/file";
 import FilesList from "./filesList/FilesList";
 import './disk.css';
 import dropImage from '../../assets/img/dragdrop.jpg';
-import breadcrumbsSeparator from '../../assets/img/separator.svg';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory, setViewType} from "../../reducers/fileReducer";
@@ -16,6 +15,7 @@ const Disk = () => {
     const dispatch = useDispatch();
     const currentDirectory = useSelector(state => state.files.currentDirectory);
     const directoryStack = useSelector(state => state.files.directoryStack);
+    const stack = useSelector(state => state.files.breadcrumbsStack);
     const loader = useSelector(state => state.app.loader);
     const [dragDrop, setDragDrop] = useState(false);
     const [filter, setFilter] = useState('type');
@@ -27,6 +27,7 @@ const Disk = () => {
     function returnHandler() {
         const prevDirId = directoryStack.pop();
         dispatch(setDirectory(prevDirId));
+        stack.pop();
     }
 
     function dragEnterHandler(event) {
@@ -67,43 +68,7 @@ const Disk = () => {
                 <div className="controls">
                     <div className="controls__btns">
                         <button className="button__back" onClick={() => returnHandler()}>Back</button>
-                        <div className="crumbs">
-                            <div className="crumbs__body">
-                                <div className="crumbs__element">
-                                    <div className="crumbs__title">
-                                        <div className="crumbs__title__text">Main</div>
-                                    </div>
-                                    <div className="crumbs__divider">
-                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
-                                    </div>
-                                </div>
-                                <div className="crumbs__element">
-                                    <div className="crumbs__title">
-                                        <div className="crumbs__title__text">Images</div>
-                                    </div>
-                                    <div className="crumbs__divider">
-                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
-                                    </div>
-                                </div>
-                                <div className="crumbs__element">
-                                    <div className="crumbs__title">
-                                        <div className="crumbs__title__text">Summer2018</div>
-                                    </div>
-                                    <div className="crumbs__divider">
-                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
-                                    </div>
-                                </div>
-                                <div className="crumbs__element">
-                                    <div className="crumbs__title">
-                                        <div className="crumbs__title__text">July</div>
-                                    </div>
-                                    <div className="crumbs__divider">
-                                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<BreadCrumbs/>*/}
+                        <BreadCrumbs/>
                     </div>
                     <div className="controls__filter">
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">

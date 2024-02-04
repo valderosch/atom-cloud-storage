@@ -4,6 +4,8 @@ const ADD_FILE = "ADD_FILE";
 const SET_POPUP_DISPLAY = "SET_POPUP_DISPLAY";
 const PUSH_TO_DIRSTACK = 'PUSH_TO_DIRSTACK';
 const POP_FROM_DIRSTACK = 'POP_FROM_DIRSTACK';
+const PUSH_TO_BREADCRUMBS = 'PUSH_TO_BREADCRUMBS';
+const POP_FROM_BREADCRUMBS = 'POP_FROM_BREADCRUMBS';
 const DELETE_FILE = "DELETE_FILE";
 const SET_VIEW_TYPE = "SET_VIEW_TYPE";
 
@@ -12,7 +14,8 @@ const defaultState = {
     currentDirectory: null,
     popupDisplay: 'none',
     directoryStack: [],
-    viewType: 'list'
+    breadcrumbsStack: [],
+    viewType: 'list',
 }
 export default function fileReducer(state = defaultState,  action){
     switch (action.type){
@@ -32,6 +35,10 @@ export default function fileReducer(state = defaultState,  action){
             return {...state, files: [...state.files.filter(file => file._id !== action.payload)]}
         case SET_VIEW_TYPE:
             return {...state, viewType: action.payload}
+        case PUSH_TO_BREADCRUMBS:
+            return {...state, breadcrumbsStack: [...state.breadcrumbsStack, action.payload]};
+        case POP_FROM_BREADCRUMBS:
+            return {...state, breadcrumbsStack: action.payload};
         default:
             return state;
     }
@@ -76,3 +83,13 @@ export const setViewType = (type) => ({
     type: SET_VIEW_TYPE,
     payload: type
 })
+
+export const pushToBreadcrumbsStack = (directory) => ({
+    type: PUSH_TO_BREADCRUMBS,
+    payload: directory,
+});
+
+export const popFromBreadcrumbsStack = (directory) => ({
+    type: POP_FROM_BREADCRUMBS,
+    payload: directory,
+});
