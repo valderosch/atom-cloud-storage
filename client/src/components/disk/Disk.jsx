@@ -4,6 +4,7 @@ import {getFiles, uploadFile} from "../../actions/file";
 import FilesList from "./filesList/FilesList";
 import './disk.css';
 import dropImage from '../../assets/img/dragdrop.jpg';
+import filterImage from '../../assets/img/filter.png';
 import Explorer from "./explorer/Explorer";
 import PopUp from "./popup/PopUp";
 import {setDirectory, setViewType} from "../../reducers/fileReducer";
@@ -71,6 +72,7 @@ const Disk = () => {
                         <BreadCrumbs/>
                     </div>
                     <div className="controls__filter">
+                        <img src={filterImage} alt="filter" className="filter__img"/>
                         <select value={filter} onChange={(e) => setFilter(e.target.value)} className="filter__select">
                             <option className='option' value="filename">name</option>
                             <option className='option' value="filetype">type</option>

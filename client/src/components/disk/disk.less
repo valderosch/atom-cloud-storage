@@ -37,7 +37,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-
   }
 
   &__upload__input{
@@ -51,42 +50,40 @@
     border: 4px dashed #e58f8f;
   }
 }
+
+.filter__img {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-bottom: 0.5%;
+}
+
 .filter__select {
-  width: 35%;
+  width: 25%;
   height: 50%;
   background-color: transparent;
-  border-bottom: 2px solid #424242;
   color: #424242;
   font-size: 16px;
   font-weight: 600;
   margin: 0 5%;
   outline: none;
+  border-color: transparent;
+  border-bottom: 2px solid #e58f8f;
   appearance: none;
+  text-align: center;
   &:active, &:focus {
     border-color: transparent;
+    outline-color: transparent;
     border-bottom-color: #e58f8f;
-  }
-  &::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
+    background-color: transparent;
   }
   .option {
     color: #424242;
     width: 100%;
     background-color: #f3fcff;
-    box-shadow: none;
-    appearance: none;
-    border-color: #f3fcff;
-    outline: #f3fcff;
+    box-shadow: transparent;
     padding: 1rem;
-    &:hover{
-      border: 1px solid #424242;
-      background-color: #f3fcff;
-    }
+    font-size: 16px;
+    font-weight: 600;
     &:checked {
       color: #e58f8f;
     }
