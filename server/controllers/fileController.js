@@ -39,7 +39,7 @@ class FileController {
                     files = await File.find({user: request.user.id, parent: request.query.parent}).sort({filetype:1});
                     break
                 case 'size':
-                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({size:1});
+                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({size:-1});
                     break
                 case 'date':
                     files = await File.find({user: request.user.id, parent: request.query.parent}).sort({date:1});

@@ -35,8 +35,8 @@ const Controller = ({data}) => {
             <div className="controller__storage">
                 <div className="storage__title">Your Workspace</div>
                     <div className="storage__bar__wrapper">
-                    <div className="storage__bar" style={{width: usedSpace + '%'}}></div>
-                </div>
+                        <div className="storage__bar" style={{width: usedSpace + '%'}}></div>
+                    </div>
                 <div className="storage__info">Used: {formatFileSize(data.total)} / {formatFileSize(data.available)}</div>
             </div>
             { buttonPopup &&

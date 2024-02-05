@@ -31,14 +31,6 @@ const BreadCrumbs = () => {
     return (
         <div className='crumbs'>
             <div className="crumbs__body">
-                <div className="crumbs__element">
-                    <div className="crumbs__title" onClick={handleRootClick}>
-                        <div className="crumbs__title__text"># All files</div>
-                    </div>
-                    <div className="crumbs__divider">
-                        <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator" />
-                    </div>
-                </div>
                 {directoryStack.length > 0 ? (
                     directoryStack.map((folder, index) => (
                         <div className="crumbs__element" key={index}>
@@ -54,8 +46,11 @@ const BreadCrumbs = () => {
                     ))
                 ) : (
                     <div className="crumbs__element">
-                        <div className="crumbs__title" onClick={() => handleBreadcrumbClick(0)}>
-                            <div className="crumbs__title__text"></div>
+                        <div className="crumbs__title" onClick={handleRootClick}>
+                            <div className="crumbs__title__text"># All files</div>
+                        </div>
+                        <div className="crumbs__divider">
+                            <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator" />
                         </div>
                     </div>
                 )}
