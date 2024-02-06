@@ -21,12 +21,12 @@ const Controller = ({data}) => {
     function popupHandler() {
         dispatch(setPopupDisplay('flex'));
         setButtonPopup(false);
-        return undefined;
     }
 
     function fileUploadHandler(e) {
         const files = [...e.target.files];
         files.forEach(file => dispatch(uploadFile(file, currentDirectory)))
+        setButtonPopup(false);
     }
 
     return (
@@ -42,20 +42,23 @@ const Controller = ({data}) => {
             { buttonPopup &&
                 <div className="button__popup" onClick={() => setButtonPopup(false)}>
                     <div className="button__popup__body" onClick={event => event.stopPropagation()}>
-                        <div className="button__popup__body__makedir" onClick={() => popupHandler()}>
-                            <div className="button__popup__body__item">
-                                <img className="button__popup__body__img" src={dirImg} alt="directory"/>
-                                <span className="button__popup__body__title">Create directory</span>
-                            </div>
+                        <div className="button__popup__item" onClick={() => popupHandler()}>
+                            <img className="popup__item__img" src={dirImg} alt="directory"/>
+                            <span className="make-dir__title">Create directory</span>
                         </div>
-                        <div className="button__popup__body__loadfile">
-                           <div className="button__popup__body__item">
-                               <img className="button__popup__body__img" src={fileImg} alt="file"/>
-                               <div className="button__popup__body__item">
-                                   <label htmlFor="button__popup__body__item__upload__input" className="button__popup__body__item__upload__label">Upload File</label>
-                                   <input multiple={true} type="file" onChange={(e) => fileUploadHandler(e)} id="button__popup__body__item__upload__input" className="controls__upload__input"/>
-                               </div>
-                           </div>
+
+                        <div className="button__popup__item">
+                            <img className="popup__item__img" src={fileImg} alt="file"/>
+                            <div className="input__handler">
+                                <label htmlFor="upload__input" className="upload__input__label">Upload File</label>
+                                <input
+                                    multiple={true} type="file"
+                                    onChange={(e) => fileUploadHandler(e)}
+                                    id="upload__input"
+                                    className="upload__input"
+                                    placeholder="upload file"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

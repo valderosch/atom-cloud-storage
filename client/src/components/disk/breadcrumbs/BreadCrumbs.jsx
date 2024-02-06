@@ -32,18 +32,28 @@ const BreadCrumbs = () => {
         <div className='crumbs'>
             <div className="crumbs__body">
                 {directoryStack.length > 0 ? (
-                    directoryStack.map((folder, index) => (
-                        <div className="crumbs__element" key={index}>
-                            <div className="crumbs__title" onClick={(event) => handleBreadcrumbClick(event, index)}>
-                                <div className="crumbs__title__text">{stack[index]}</div>
-                            </div>
-                            {index < stack.length - 1 && (
+                        <div className='crumbs__wrapper'>
+                            <div className="crumbs__element">
+                                <div className="crumbs__title" onClick={handleRootClick}>
+                                    <div className="crumbs__title__text"># All files</div>
+                                </div>
                                 <div className="crumbs__divider">
                                     <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator" />
                                 </div>
-                            )}
+                            </div>
+                            {directoryStack.map((folder, index) => (
+                                <div className="crumbs__element" key={index}>
+                                    <div className="crumbs__title" onClick={(event) => handleBreadcrumbClick(event, index)}>
+                                        <div className="crumbs__title__text">{stack[index]}</div>
+                                    </div>
+                                    {index < stack.length - 1 && (
+                                        <div className="crumbs__divider">
+                                            <img src={breadcrumbsSeparator} alt="separator" className="crumbs__separator" />
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
-                    ))
                 ) : (
                     <div className="crumbs__element">
                         <div className="crumbs__title" onClick={handleRootClick}>

@@ -16,6 +16,7 @@ const Profile = () => {
     function onChangeHandler(e) {
             const file = e.target.files[0];
             dispatch(uploadUserAvatar(file));
+            setPopup(false);
     }
 
     return (

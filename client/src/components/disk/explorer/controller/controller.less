@@ -78,14 +78,56 @@
 }
 .button__popup__body {
   width: 16%;
-  height: 20%;
-  background-color: #ffffff;
+  height: 15%;
+  background-color: #f3fcff;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   box-shadow: 1px 1px 10px #b0b0b0;
-  margin-left: 3rem;
-  margin-top: 10rem;
+  margin-left: 3%;
+  margin-top: 11%;
+  border-radius: 1rem;
 
+  .button__popup__item {
+    font-family: 'Lato', sans-serif;
+    width: 90%;
+    height: 45%;
+    background-color: #f3fcff;
+    border-radius: 1rem;
+    align-self: center;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    &:hover{
+      text-decoration: underline;
+    }
+    .popup__item__img {
+      width: 1.2rem;
+      height: 1.2rem;
+      align-self: center;
+      justify-self: center;
+      align-items: center;
+    }
+    .make-dir__title, .input__handler {
+      width: 80%;
+      height: 45%;
+      display: flex;
+      align-self: center;
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 2%;
+      justify-content: flex-start;
+      align-items: center;
+      .upload__input{display: none}
+      .upload__input__label{
+        align-self: center;
+        justify-self: center;
+        width: auto;
+        height: 90%;
+      }
+    }
+  }
 
   &__makedir, &__loadfile {
     width: 100%;
@@ -97,24 +139,5 @@
     &:hover {
       background-color: #f0f0f3;
     }
-  }
-  &__item {
-    width: 90%;
-    height: 60%;
-    align-self: center;
-  }
-  &__img {
-    margin-top: 0.1rem;
-    margin-right: 0.5rem;
-    width: 1.2rem;
-    height: 1.2rem;
-    align-self: center;
-    justify-self: center;
-  }
-  &__title {
-    font-size: 18px;
-    font-weight: 400;
-    color: #424242;
-    font-family: 'Lato', sans-serif;
   }
 }
