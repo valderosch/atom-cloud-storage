@@ -33,7 +33,7 @@ class FileController {
             let files = '';
             switch (sort){
                 case 'name':
-                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({filename:1});
+                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({filename:-1});
                     break
                 case 'type':
                     files = await File.find({user: request.user.id, parent: request.query.parent}).sort({filetype:1});
@@ -42,7 +42,7 @@ class FileController {
                     files = await File.find({user: request.user.id, parent: request.query.parent}).sort({size:-1});
                     break
                 case 'date':
-                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({date:1});
+                    files = await File.find({user: request.user.id, parent: request.query.parent}).sort({date:-1});
                     break
                 default:
                     files = await File.find({user: request.user.id, parent: request.query.parent});

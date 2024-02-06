@@ -3,7 +3,6 @@ const File = require('../models/File');
 const config = require('config');
 
 class FileService {
-
     createNewDir(file){
         const filePath = `${config.get('filepath')}\\${file.user}\\${file.filepath}`
         return new Promise((resolve, reject) => {
@@ -39,8 +38,5 @@ class FileService {
         return config.get('filepath') + '\\' + file.user + '\\' + file.filepath;
     }
 }
-
-
-
 
 module.exports = new FileService();
