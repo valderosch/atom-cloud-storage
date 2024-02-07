@@ -12,13 +12,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {pushToBreadcrumbsStack, pushToStack, setDirectory} from "../../../../reducers/fileReducer";
 import {deleteFile, downloadFile} from "../../../../actions/file";
 
+
 const File = ({file}) => {
     const [isFav, setIsFav] = useState(file.isFav);
     const dispatch = useDispatch();
     const currentDirectory = useSelector(state => state.files.currentDirectory);
     const fileViewType = useSelector(state => state.files.viewType);
     const [fileContext, setFileContext] = useState(false);
-    let filePosition = {};
+    const [filePosition, setFilePosition] = useState({});
 
     const handleFavClick = () => {
         setIsFav(!isFav);
@@ -71,16 +72,77 @@ const File = ({file}) => {
     function fileContextMenuHandler(e) {
         e.stopPropagation();
         setFileContext(!fileContext);
-
-        const gridFile = e.currentTarget;
-        const rect = gridFile.getBoundingClientRect();
-
-        filePosition =({
-            top: `${rect.top + window.scrollY}px`,
-            left: `${rect.left + window.scrollX}px`,
+        setFilePosition({
+            top: `0px`,
+            left: `0px`,
+            zIndex: 0,
         });
 
-        console.log(filePosition);
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        const menuWidthPercent = 20;
+        const menuHeightPercent = 50;
+
+        const menuWidth = (menuWidthPercent / 100) * windowWidth;
+        const menuHeight = (menuHeightPercent / 100) * windowHeight;
+
+        let menuX = e.clientX - menuWidth / 2;
+        let menuY = e.clientY - menuHeight / 2;
+
+        if (menuX < 0) {
+            menuX = 0;
+        } else if (menuX + menuWidth > windowWidth) {
+            menuX = windowWidth - menuWidth;
+        }
+
+        if (menuY < 0) {
+            menuY = 0;
+        } else if (menuY + menuHeight > windowHeight) {
+            menuY = windowHeight - menuHeight;
+        }
+
+        setFilePosition({
+            top: `${menuY-50}px`,
+            left: `${menuX-180}px`,
+            zIndex: 3,
+        });
+    }
+    const ContextMenu = () => {
+        return(
+            <div className="filecontext" style = {filePosition}>
+                <div className="filecontext__list">
+                    {file.filetype !== 'dir' &&
+                        <div className="filecontext__option">
+                            <img src={downloadImg} alt="icon" className="filecontext__img"/>
+                            <div onClick={(e) => downloadHandler(e) }
+                                 className="filecontext__description"> download file
+                            </div>
+                        </div>
+                    }
+                    <div className="filecontext__option">
+                        <img src={renameImg} alt="icon" className="filecontext__img"/>
+                        <div className="filecontext__description">rename {file.filetype === 'dir'? 'directory' : 'file'}</div>
+                    </div>
+                    <div className="filecontext__option">
+                        <img src={copyImg} alt="icon" className="filecontext__img"/>
+                        <div className="filecontext__description">make copy</div>
+                    </div>
+                    <div className="filecontext__option">
+                        <img src={shareImg} alt="icon" className="filecontext__img"/>
+                        <div className="filecontext__description">share file</div>
+                    </div>
+                    <div className="filecontext__option">
+                        <img src={infoImg} alt="icon" className="filecontext__img"/>
+                        <div className="filecontext__description">view information</div>
+                    </div>
+                    <div className="filecontext__option" onClick={(e) => deleteHandler(e)}>
+                        <img src={deleteImg} alt="icon" className="filecontext__img"/>
+                        <div className="filecontext__description">delete {file.filetype === 'dir'? 'directory' : 'file'}</div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     if(fileViewType === 'list') {
@@ -105,22 +167,7 @@ const File = ({file}) => {
                     ∷
                 </div>
                 {fileContext &&
-                    <div className="list__filecontext" style = {filePosition}>
-                        <div className="list__filecontext__content">
-                            {file.filetype !== 'dir' &&
-                                <div className="list__filecontext__options">
-                                    <img src={downloadImg} alt="icon" className="filecontext__img"/>
-                                    <div onClick={(e) => downloadHandler(e) }
-                                         className="filecontext__description"> download file
-                                    </div>
-                                </div>
-                            }
-                            <div className="list__filecontext__options" onClick={(e) => deleteHandler(e)}>
-                                <img src={deleteImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">delete {file.filetype === 'dir'? 'directory' : 'file'}</div>
-                            </div>
-                        </div>
-                    </div>
+                    <ContextMenu/>
                 }
             </div>
 
@@ -138,38 +185,7 @@ const File = ({file}) => {
                     </div>
                 </div>
                 {fileContext &&
-                    <div className="filecontext" style = {filePosition}>
-                        <div className="filecontext__list">
-                            {file.filetype !== 'dir' &&
-                                <div className="filecontext__option">
-                                    <img src={downloadImg} alt="icon" className="filecontext__img"/>
-                                    <div onClick={(e) => downloadHandler(e) }
-                                         className="filecontext__description"> download file
-                                    </div>
-                                </div>
-                            }
-                            <div className="filecontext__option">
-                                <img src={renameImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">rename {file.filetype === 'dir'? 'directory' : 'file'}</div>
-                            </div>
-                            <div className="filecontext__option">
-                                <img src={copyImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">make copy</div>
-                            </div>
-                            <div className="filecontext__option">
-                                <img src={shareImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">share file</div>
-                            </div>
-                            <div className="filecontext__option">
-                                <img src={infoImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">view information</div>
-                            </div>
-                            <div className="filecontext__option" onClick={(e) => deleteHandler(e)}>
-                                <img src={deleteImg} alt="icon" className="filecontext__img"/>
-                                <div className="filecontext__description">delete {file.filetype === 'dir'? 'directory' : 'file'}</div>
-                            </div>
-                        </div>
-                    </div>
+                    <ContextMenu/>
                 }
             </div>
         );
