@@ -18,7 +18,6 @@ function App() {
 
     useEffect(() => {
         dispatch(authentication());
-        console.log('inited auth');
     }, [dispatch])
 
   return (

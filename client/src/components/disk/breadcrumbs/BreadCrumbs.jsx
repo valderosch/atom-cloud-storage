@@ -9,9 +9,6 @@ const BreadCrumbs = () => {
     const stack = useSelector(state => state.files.breadcrumbsStack);
     const directoryStack = useSelector(state => state.files.directoryStack);
 
-    console.log(stack);
-    console.log(directoryStack);
-
     const handleRootClick = () => {
         dispatch(setDirectory(null));
         dispatch(popFromStack([]));
@@ -19,13 +16,11 @@ const BreadCrumbs = () => {
     };
 
     const handleBreadcrumbClick = (event ,index) => {
-        console.log('index == ' + index);
         const updatedStack = directoryStack.slice(0, index + 1);
         dispatch(popFromStack(updatedStack));
         const updatedNameStack = stack.slice(0, index + 1);
         dispatch(popFromBreadcrumbsStack(updatedNameStack));
         dispatch(setDirectory(updatedStack[index + 1]));
-        console.log(updatedStack[index] + ' set dir');
     }
 
     return (

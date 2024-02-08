@@ -5,13 +5,18 @@ import {removeUserAvatar, uploadUserAvatar} from "../../actions/user";
 import {calculatePercentage, formatFileSize} from "../disk/explorer/utility";
 import {NavLink} from "react-router-dom";
 import './profile.css';
+import {API_URL} from "../../config";
 
 const Profile = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user.currentUser);
+    const user = useSelector(state => state.user.userData);
     const [popup, setPopup] = useState(false);
-    console.log(user);
-    const user_test = {username: 'commonuser999', email: 'commonuser999@mail.com', used: 1.1, available: 10, percent: 11}
+
+    const avatar = user.avatar ? `${API_URL + user.avatar}` : defaultImage;
+    const name = user.email.split('@')[0];
+    const maxsize = formatFileSize(1024**3);
+    const usedSpace = formatFileSize(user.usedSpace);
+    const percentage = calculatePercentage(user.usedSpace, 1024**3);
 
     function onChangeHandler(e) {
             const file = e.target.files[0];
@@ -24,7 +29,7 @@ const Profile = () => {
             <div className="profile__content">
                 <div className="profile__data">
                     <div className="avatar" onClick={event => event.stopPropagation()}>
-                        <img src={defaultImage} alt="img" className='user__img'/>
+                        <img src={avatar} alt="img" className='user__img'/>
                         <div className="edit-button" onClick={(e) => setPopup(!popup)}>🖉</div>
                         {popup === true &&
                             <div className="avatar__popup">
@@ -43,16 +48,16 @@ const Profile = () => {
                         }
                     </div>
                     <div className="info">
-                        <div className="info__username">{user_test.username} 🙋‍♂️</div>
+                        <div className="info__username">{name} 🙋‍♂️</div>
                         <div className="info__block">
-                            <div className="info__email">Email: {user_test.email}</div>
+                            <div className="info__email">Email: {user.email}</div>
                             <div className="info__item">Your plan: <b>BASIC</b></div>
-                            <div className="info__item">Available space: <b>{user_test.available} GB</b></div>
-                            <div className="info__item">Used Space: <b>{user_test.used} GB</b></div>
+                            <div className="info__item">Available space: <b>{maxsize}</b></div>
+                            <div className="info__item">Used Space: <b>{usedSpace}</b></div>
                             <div className="info__bar__wrapper">
-                                <div className="info__bar" style={{width: user_test.percent + '%'}}></div>
+                                <div className="info__bar" style={{width: percentage + '%'}}></div>
                             </div>
-                            <div className="info__loadstatus" style={{marginLeft: user_test.percent-9.5 + '%'}}>👆<br/>You are here</div>
+                            <div className="info__loadstatus" style={{marginLeft: percentage-9.5 + '%'}}>👆<br/>You are here</div>
                         </div>
                     </div>
                 </div>

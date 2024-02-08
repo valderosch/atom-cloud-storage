@@ -1,18 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Navbar.css';
 import Logo from '../../assets/img/logo.png'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {logOut} from "../../reducers/userReducer";
+import {logOut, setUserData} from "../../reducers/userReducer";
 import Searchbar from "../disk/searchbar/Searchbar";
 import noAvatar from '../../assets/img/user.png';
 import {API_URL} from "../../config";
+import {authentication} from "../../actions/user";
 
 const Navbar = () => {
     const isUserAuthorised = useSelector(state => state.user.isAuthorised);
-    const currentUser = useSelector(state => state.user.currentUser);
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    const avatarImg = currentUser && currentUser.avatar ? `${API_URL + currentUser.avatar}` : noAvatar;
+    const [avatarImg, setAvatarImg] = useState(noAvatar);
+    const avatar = !loading ? `${API_URL + avatarImg.avatar}` : noAvatar;
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const result = await dispatch(authentication());
+                setAvatarImg(result);
+                dispatch(setUserData(result))
+                setLoading(false);
+            } catch (error) {
+                console.error('Authentication error:', error);
+                setLoading(false);
+            }
+        };
+        checkAuth();
+    }, [dispatch]);
 
     return (
         <div className="navbar">
@@ -42,7 +59,7 @@ const Navbar = () => {
                     {isUserAuthorised &&
                         <div className="auth__block">
                             <NavLink to='/profile'>
-                                    <img  key={avatarImg} src={avatarImg} alt="user" className="avatar__img"/>
+                                    <img  key={avatarImg} src={avatarImg.avatar !== null ? avatar: noAvatar} alt="user" className="avatar__img"/>
                             </NavLink>
                             <p className="auth_btn" onClick={() => dispatch(logOut())}>Logout</p>
                         </div>
