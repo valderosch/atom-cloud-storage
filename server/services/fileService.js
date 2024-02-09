@@ -25,7 +25,7 @@ class FileService {
         })
     }
 
-    deleteFile(file) {
+    deleteFile(request, file) {
         const path = this.getFilePath(file);
         if(file.filetype === 'dir'){
             fs.rmdirSync(path);

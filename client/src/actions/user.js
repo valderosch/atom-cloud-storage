@@ -1,6 +1,5 @@
 import axios from "axios";
 import {setUser} from "../reducers/userReducer";
-import {useSelector} from "react-redux";
 
 const host = 'http://localhost';
 const port = '5000';

@@ -70,6 +70,7 @@ const File = ({file}) => {
     }
 
     function fileContextMenuHandler(e) {
+        setFileContext(false);
         e.stopPropagation();
         setFileContext(!fileContext);
         setFilePosition({

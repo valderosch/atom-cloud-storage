@@ -16,6 +16,7 @@ class FileController {
                 await fileService.createNewDir(file);
             } else {
                 file.filepath = `${parentFile.filepath}\\${file.filename}`
+                await fileService.createNewDir(file);
                 parentFile.childs.push(file._id);
                 await parentFile.save();
             }
@@ -85,14 +86,11 @@ class FileController {
             }
             file.mv(filepath);
 
-            // const cleanFileName = (name) => name.replace(/[\\/:*?"<>|]/g, '');
             const filetype = file && file.name ? file.name.split('.').pop() : 'unknown';
-
             let file_path = file.name;
             console.log(`FILENAME${file.filename} + FILE.NAME ${file.name}`)
             if (parent) {
                 file_path = parent.filepath + "\\" + file.filename;
-                // file_path = `${parent.filepath}\\${file.filename}`
             }
 
             const loadedFile = new File({
@@ -100,7 +98,7 @@ class FileController {
                 filetype: filetype,
                 size: file.size,
                 filepath: file_path,
-                parent: parent?._id,
+                parent: parent ? parent._id : null,
                 user: user._id
             })
 

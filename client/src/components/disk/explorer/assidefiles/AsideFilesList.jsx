@@ -1,6 +1,5 @@
 import React from 'react';
 import './assidefilelist.css';
-import mockStructure from './datamock';
 import Folder from "./folder/Folder";
 import {useSelector} from "react-redux";
 
