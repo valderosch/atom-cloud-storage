@@ -62,7 +62,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="link">
-                    <NavLink to='/' className="navlink">MAIN</NavLink>
+                    <NavLink to='/' className="navlink">← MAIN</NavLink>
                 </div>
             </div>
         </div>

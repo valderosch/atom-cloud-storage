@@ -89,7 +89,7 @@
         height: 1.8rem;
         position: absolute;
         margin-left: 1%;
-        margin-top: 9%;
+        margin-top: 10%;
         border-radius: 2rem;
         background-color: #fff;
         box-shadow: 1px 1px 5px #d2d2d2;
@@ -197,15 +197,23 @@
       .navlink{
         width: 12%;
         height: 90%;
-        background-color: #000000;
         align-self: center;
         text-align: center;
         text-decoration: none;
-        color: #e58f8f;
+        color: #424242;
         font-size: 16px;
         font-weight: 500;
         line-height: 1.6;
         font-family: 'Lato', sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+          color: #e58f8f;
+          box-shadow: 1px 1px 10px #d2d2d2;
+          border-radius: .5rem;
+        }
       }
     }
   }

@@ -7,11 +7,17 @@ import {setViewType} from "../../../reducers/fileReducer";
 
 const Filter = () => {
     const [filter, setFilter] = useState('type');
+    const [activeView, setActiveView] = useState('list');
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getFiles(filter));
     }, [dispatch, filter])
+
+    function handleViewType(viewType) {
+        dispatch(setViewType(viewType));
+        setActiveView(viewType);
+    }
 
     return (
         <div className="filter">
@@ -21,8 +27,9 @@ const Filter = () => {
                 <option value="size">size</option>
                 <option value="date">date</option>
             </select>
-            <button className="filter__list" onClick={() => dispatch(setViewType('list'))}></button>
-            <button className="filter__grid" onClick={() => dispatch(setViewType('grid'))}></button>
+            <button className="filter__list" onClick={() => handleViewType('list')}
+            style={activeView === 'list' ? {border: '#424242'} : {border: '#f2f2f2'}}></button>
+            <button className="filter__grid" onClick={() => handleViewType('grid')}></button>
         </div>
     );
 };
