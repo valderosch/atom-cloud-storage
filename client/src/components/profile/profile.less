@@ -21,13 +21,25 @@
       width: 90%;
       height: 85%;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
+
+      .user-info {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .user-stats {
+
+      }
     }
 
     .avatar {
       width: 30%;
-      height: 47%;
+      height: 100%;
       display: flex;
       align-self: flex-start;
       flex-direction: column;
@@ -125,7 +137,7 @@
     }
     .info {
       width: 65%;
-      height: 50%;
+      height: 100%;
       align-self: flex-start;
       display: flex;
       flex-direction: column;
@@ -184,6 +196,156 @@
         height: 20%;
         text-align: center;
         user-select: none;
+      }
+    }
+
+    .stats_block {
+      border-top: 1px solid #d2d2d2;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+      height: 45%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .statistics, .actions {
+        width: 49%;
+        height: 100%;
+      }
+
+      .stats-title {
+        margin-left: .3rem;
+        width: 100%;
+        height: 10%;
+        color: #424242;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: 'Lato', sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .stats-grid {
+        margin-top: 2%;
+        display: grid;
+        grid-template-columns: 5fr 5fr 5fr;
+        width: 100%;
+        height: 85%;
+        .stats-elem {
+          width: 95%;
+          height: 95%;
+          align-self: center;
+          background-color: #ffffff;
+          border: 1px solid #d2d2d2;
+          border-radius: .5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .elem-title {
+            width: 80%;
+            height: 30%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #424242;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .elem-data {
+            width: 80%;
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #424242;
+            font-size: 20px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .actions-block {
+        margin-top: 2%;
+        width: 100%;
+        height: 85%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+
+        .user-story, .user-actions {
+          width: 49%;
+          height: 100%;
+          background-color: #fff;
+          border: 1px solid #d2d2d2;
+          border-radius: .5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .story-title {
+            width: 80%;
+            height: 10%;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: 'Lato', sans-serif;
+            color: #757575;
+            border-bottom: 1px solid #757575;
+          }
+          .story-data {
+            width: 80%;
+            height: 80%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .story-item {
+              margin-top: 3%;
+              width: 100%;
+              height: 25%;
+              background-color: #b9ddf6;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              .item-img {
+                width: 1.5rem;
+                height: 1.5rem;
+
+              }
+              .item-filename {
+                width: 80%;
+                height: 100%;
+                font-family: 'Lato', sans-serif;
+                font-size: 16px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+            }
+
+            &::-webkit-scrollbar {
+              width: 0.5rem;
+              display: none;
+            }
+            &::-webkit-scrollbar-thumb {
+              background-color: #808080;
+              border-radius: 6px;
+            }
+            &::-webkit-scrollbar-track {
+              background-color: transparent;
+            }
+          }
+        }
       }
     }
 
