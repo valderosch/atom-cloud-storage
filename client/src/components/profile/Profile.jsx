@@ -97,19 +97,49 @@ const Profile = () => {
                             <div className="stats-title">/Account</div>
                             <div className="actions-block">
                                 <div className="user-story">
-                                    <div className="story-title">last added</div>
+                                    <div className="story-title">👇 last added</div>
                                     <div className="story-data">
                                         <div className="story-item">
                                             <img src={fileImg} alt="item" className="item-img"/>
-                                            <div className="item-filename">file.png</div>
+                                            <div className="item-filename">files.png</div>
+                                        </div>
+                                        <div className="story-item">
+                                            <img src={fileImg} alt="item" className="item-img"/>
+                                            <div className="item-filename">FunnyFragon.gif</div>
+                                        </div>
+                                        <div className="story-item">
+                                            <img src={fileImg} alt="item" className="item-img"/>
+                                            <div className="item-filename">MetallPoint.png</div>
+                                        </div>
+                                        <div className="story-item">
+                                            <img src={fileImg} alt="item" className="item-img"/>
+                                            <div className="item-filename">CosswortdFordF250Heavy.png</div>
+                                        </div>
+                                        <div className="story-item">
+                                            <img src={fileImg} alt="item" className="item-img"/>
+                                            <div className="item-filename">DestinyOfKing.mp4</div>
+                                        </div>
+                                        <div className="story-item">
+                                            <img src={fileImg} alt="item" className="item-img"/>
+                                            <div className="item-filename">Appointment-2023-03-25.png</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="user-actions">
                                     <div className="story-title">controls</div>
-                                    <div className="story-data">
-                                        ///
-                                        ///
+                                    <div className="actions-block">
+                                        <div className="action">
+                                            <div className="action-indicator">a@a</div>
+                                            <div className="action-title">change e-mail</div>
+                                        </div>
+                                        <div className="action">
+                                            <div className="action-indicator">***</div>
+                                            <div className="action-title">change password</div>
+                                        </div>
+                                        <div className="action">
+                                            <div className="action-indicator">..❌</div>
+                                            <div className="action-title">delete all</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
