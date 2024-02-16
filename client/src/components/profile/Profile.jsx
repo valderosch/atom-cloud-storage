@@ -12,6 +12,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.userData);
     const [popup, setPopup] = useState(false);
+    console.log(user);
 
     const avatar = user.avatar ? `${API_URL + user.avatar}` : defaultImage;
     const name = user.email.split('@')[0];

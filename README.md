@@ -1,6 +1,20 @@
 # ATOM Cloud Storage Application ☁
 ### Based on MERN Stack.
-*current version: v0.1.1*
+*current version: v0.2.5*
+
+## About
+Atom Cloud - simple fullstack web-application where users can store their files in remote storage. Named like cloud storage. because this app don`t need store files locally on user device. For calculationg operations and store information this app using server. Client application is presentes like light-weight page in browser without storing any data. 
+
+### Actions
+Regular user can perform these actions while using application.
+- Upload files (by button / by dropping).
+- Delete files.
+- Download files to computer.
+- Change view type of files grid.
+- View additional info about files.
+- Register and manage his account.
+- View personal info.
+- Change account details.
 
 ### Environment
 **Client 💻**
