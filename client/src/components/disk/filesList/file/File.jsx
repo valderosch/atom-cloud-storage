@@ -146,9 +146,53 @@ const File = ({file}) => {
         )
     }
 
+    function handleDrag(e, file) {
+        e.stopPropagation();
+        e.dataTransfer.setData('text/plain', file._id);
+        console.log('DRAG StART');
+    }
+
+    function handleDragEnter(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log('File entered folder');
+    }
+
+    function handleDragLeave(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log('Drag Leaved');
+    }
+    function handleDragOver(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log('File being dragged over folder');
+    }
+    function handleDragDrop(e, file) {
+        if (file.filetype === 'dir'){
+            e.stopPropagation();
+            e.preventDefault();
+            console.log('Drag Drop');
+            const fileId = e.dataTransfer.getData('text/plain');
+            console.log('File dropped over folder:', fileId);
+            //changeFileFolder(file);
+        }
+        else {
+            console.log('File being dropped, but not in folder')
+        }
+    }
+
     if(fileViewType === 'list') {
         return (
-            <div className="file" onClick={() => openDirectoryHandler(file)}>
+            <div className="file"
+                 onClick={() => openDirectoryHandler(file)}
+                 draggable
+                 onDragStart={(e) => handleDrag(e, file)}
+                 onDragEnter={(e) => handleDragEnter(e)}
+                 onDragLeave={(e) => handleDragLeave(e)}
+                 onDragOver={(e) => handleDragOver(e)}
+                 onDrop={(e) => handleDragDrop(e, file)}
+            >
                 <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
                 <div className="file__title">{file.filename}</div>
                 <div className="file__type">{file.filetype === 'dir'? '' : file.filetype}</div>
