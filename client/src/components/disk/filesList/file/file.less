@@ -11,6 +11,10 @@
     background-color: #efefef;
     border-bottom-color: #e58f8f;
   }
+  &:active{
+    background-color: #efefef;
+    opacity: 1;
+  }
 
   &__icon {
     grid-column-start: 1;
@@ -19,6 +23,7 @@
     margin: auto;
     justify-self: center;
     align-self: center;
+    pointer-events: none;
   }
 
   &__title{
@@ -33,6 +38,7 @@
     color: #424242;
     white-space: nowrap;
     text-overflow: ellipsis;
+    pointer-events: none;
     &:hover{
       text-decoration: underline;
     }
@@ -45,6 +51,7 @@
     align-self: center;
     text-align: center;
     font-weight: bold;
+    pointer-events: none;
   }
   &__size {
     color: #424242;
@@ -53,6 +60,7 @@
     justify-self: center;
     align-self: center;
     text-align: center;
+    pointer-events: none;
   }
   &__date {
     color: #424242;
@@ -61,6 +69,7 @@
     justify-self: center;
     align-self: center;
     text-align: center;
+    pointer-events: none;
   }
   &__fav {
     width: 2rem;
@@ -69,6 +78,7 @@
     justify-self: center;
     justify-content: center;
     align-content: center;
+    pointer-events: none;
   }
   &__isfav {
     grid-column-start: 7;
@@ -81,6 +91,7 @@
     display: flex;
     margin: 6%;
     user-select: none;
+    pointer-events: none;
   }
 
   &__options{
@@ -95,6 +106,7 @@
     font-weight: 800;
     line-height: 1.5rem;
     user-select: none;
+    pointer-events: none;
     &:hover {
       background-color: #d2cece;
       color: #1f1f1f;

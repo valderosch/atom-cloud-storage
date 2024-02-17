@@ -51,7 +51,7 @@ const FilesList = () => {
     }
     if(fileViewType === 'grid'){
         return (
-            <div className="filegrid">
+            <div className="filegrid" onDragOver={event => event.stopPropagation()}>
                 <hr className='horizontal_line'/>
                 <div className="files__types">
                     <div className="docs">

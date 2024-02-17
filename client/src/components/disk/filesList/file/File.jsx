@@ -156,17 +156,25 @@ const File = ({file}) => {
         e.stopPropagation();
         e.preventDefault();
         console.log('File entered folder');
+        e.target.style.border = '1px solid black';
+        e.target.style.backgroundColor = '#e1c2c2';
     }
 
     function handleDragLeave(e) {
         e.stopPropagation();
         e.preventDefault();
         console.log('Drag Leaved');
+        e.target.style.border = 'none';
+        e.target.style.backgroundColor = 'transparent';
     }
+    let timeout;
     function handleDragOver(e) {
         e.stopPropagation();
         e.preventDefault();
-        console.log('File being dragged over folder');
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            console.log('File being dragged over folder');
+        }, 200);
     }
     function handleDragDrop(e, file) {
         if (file.filetype === 'dir'){
@@ -174,12 +182,14 @@ const File = ({file}) => {
             e.preventDefault();
             console.log('Drag Drop');
             const fileId = e.dataTransfer.getData('text/plain');
-            console.log('File dropped over folder:', fileId);
+            console.log('File ' + file._id + ' dropped over folder:' + fileId);
             //changeFileFolder(file);
         }
         else {
             console.log('File being dropped, but not in folder')
         }
+        e.target.style.border = 'none';
+        e.target.style.backgroundColor = 'transparent';
     }
 
     if(fileViewType === 'list') {
@@ -194,7 +204,7 @@ const File = ({file}) => {
                  onDrop={(e) => handleDragDrop(e, file)}
             >
                 <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="file__icon"/>
-                <div className="file__title">{file.filename}</div>
+                <div className="file__title" onDragOver={(e) => e.stopPropagation()}>{file.filename}</div>
                 <div className="file__type">{file.filetype === 'dir'? '' : file.filetype}</div>
                 <div className="file__size">{file.filetype === 'dir'? '' : formatFileSize(file.size)}</div>
                 <div className="file__date">{file.filetype === 'dir'? '' : file.date.slice(0,10)}</div>
@@ -221,7 +231,14 @@ const File = ({file}) => {
 
     if(fileViewType === 'grid') {
         return (
-            <div className="grid__file" onClick={() => openDirectoryHandler(file)}>
+            <div className="grid__file" onClick={() => openDirectoryHandler(file)}
+                 draggable
+                 onDragStart={(e) => handleDrag(e, file)}
+                 onDragEnter={(e) => handleDragEnter(e)}
+                 onDragLeave={(e) => handleDragLeave(e)}
+                 onDragOver={(e) => handleDragOver(e)}
+                 onDrop={(e) => handleDragDrop(e, file)}
+            >
                 <img src={file.filetype === 'dir' ? folderImg : fileImg} alt="file" className="grid__file__icon"/>
                 <div className="grid__file__body">
                     <div className="grid__file__title">{file.filename}</div>
