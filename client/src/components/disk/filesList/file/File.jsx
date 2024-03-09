@@ -157,7 +157,7 @@ const File = ({file}) => {
         e.preventDefault();
         console.log('File entered folder');
         e.target.style.border = '1px solid black';
-        e.target.style.backgroundColor = '#e1c2c2';
+        e.target.style.backgroundColor = '#e7dede';
     }
 
     function handleDragLeave(e) {
