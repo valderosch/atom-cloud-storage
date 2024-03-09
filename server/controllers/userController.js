@@ -37,6 +37,25 @@ class userController {
             });
         }
     }
+
+    async editUserEmail(request, response) {
+        try {
+            const user = await User.findById(request.user.id);
+            if(request.email === user.email){
+                return response.json({
+                    message: "This E-mail is assigned already"
+                });
+            }
+            user.email = request.email;
+            await user.save();
+            return response.json(user);
+        }
+        catch (e) {
+            return response.status(500).json({
+                message: "Error while [editing] Email"
+            });
+        }
+    }
 }
 
 module.exports = new userController();

@@ -67,10 +67,36 @@ export const uploadUserAvatar = (file) => {
 export const removeUserAvatar = () => {
     return async dispatch => {
         try{
-            const response = await axios.delete(`${host}:${port}/api/user/avatar`,
+            const response = await axios.delete(`${host}:${port}/api/user/email`,
             {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
             dispatch(setUser(response.data));
         } catch (e) {
+            console.log(e.res.data.message);
+        }
+    }
+}
+
+export const editUserEmail = (email) => {
+    return async dispatch => {
+        try{
+            const response = await axios.patch(`${host}:${port}/api/user/avatar`, email,
+                {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}},)
+            dispatch(setUser(response.data));
+        }
+        catch (e) {
+            console.log(e.res.data.message);
+        }
+    }
+}
+
+export const editUserPassword = (password) => {
+    return async dispatch => {
+        try{
+            const response = await axios.patch(`${host}:${port}/api/user/avatar`, password,
+                {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}},)
+            dispatch(setUser(response.data));
+        }
+        catch (e) {
             console.log(e.res.data.message);
         }
     }
